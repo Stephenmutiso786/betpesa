@@ -1,0 +1,17 @@
+{
+  "name": "betpesa-mvp",
+  "version": "0.1.0",
+  "description": "MVP betting site starter inspired by makepesa.com",
+  "main": "server/index.js",
+  "dependencies": {
+    "pg": "^8.12.0",
+    "redis": "^4.7.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

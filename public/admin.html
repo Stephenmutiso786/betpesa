@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetPesa Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="dash-shell admin-shell">
+      <header class="admin-topbar">
+        <div class="brand-left">
+          <strong>BETPESA ADMIN</strong>
+          <small id="admin-me">Loading admin profile...</small>
+        </div>
+        <div class="top-right">
+          <p class="balance">Connected</p>
+          <button id="admin-logout-btn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section class="panel history-strip">
+        <div id="admin-signal-history" class="aviator-chip-list"></div>
+      </section>
+
+      <section class="panel admin-aviator-layout">
+        <div class="aviator-screen admin-aviator-screen">
+          <p class="round-line">Round <strong id="admin-aviator-round">-</strong></p>
+          <p class="phase-line">Status: <strong id="admin-aviator-phase">betting</strong></p>
+          <p class="phase-line">Countdown: <strong id="admin-aviator-countdown">--</strong></p>
+          <p class="aviator-multiplier"><span id="admin-aviator-multiplier">1.00x</span></p>
+          <canvas id="admin-aviator-canvas" width="1200" height="420"></canvas>
+        </div>
+        <aside class="signal-side admin-upcoming">
+          <h3>Upcoming Games</h3>
+          <div class="item">
+            <strong>Live</strong>
+            <small id="admin-signal-live-display">1.00x</small>
+            <strong>Target</strong>
+            <small id="admin-signal-target-display">2.00x</small>
+          </div>
+          <div class="item">
+            <strong>Aviator Odds (In Line)</strong>
+            <small id="admin-aviator-current-odd">Current: 1.00x</small>
+            <small id="admin-aviator-last-odd">Last: -</small>
+            <small id="admin-aviator-next-odd">Next: -</small>
+            <small id="admin-aviator-mode">Mode: -</small>
+          </div>
+          <div id="admin-aviator-odds-list" class="aviator-chip-list"></div>
+          <div id="admin-signal-upcoming-live" class="stack"></div>
+        </aside>
+      </section>
+
+      <section class="panel two-col">
+        <div class="stack">
+          <h2>Live Overview</h2>
+          <div id="admin-overview" class="stack"></div>
+        </div>
+        <div class="stack">
+          <h2>Aviator Sync</h2>
+          <div id="admin-aviator" class="stack"></div>
+        </div>
+      </section>
+
+      <section class="panel two-col">
+        <form id="odds-form" class="stack">
+          <h2>Update Odds (Shared with Clients)</h2>
+          <select id="odds-event"></select>
+          <input id="odds-home" type="number" step="0.01" min="1.01" placeholder="Home odd" required />
+          <input id="odds-draw" type="number" step="0.01" min="1.01" placeholder="Draw odd" required />
+          <input id="odds-away" type="number" step="0.01" min="1.01" placeholder="Away odd" required />
+          <button type="submit">Push Odds Live</button>
+        </form>
+
+        <form id="settle-form" class="stack">
+          <h2>Settle Bet</h2>
+          <input id="settle-bet-id" placeholder="Bet ID" required />
+          <select id="settle-result">
+            <option value="won">won</option>
+            <option value="lost">lost</option>
+            <option value="void">void</option>
+          </select>
+          <button type="submit">Settle</button>
+        </form>
+      </section>
+
+      <section class="panel two-col">
+        <form id="role-form" class="stack">
+          <h2>User Role Management</h2>
+          <select id="role-user"></select>
+          <select id="role-value">
+            <option value="user">user</option>
+            <option value="signal_provider">signal_provider</option>
+            <option value="super_admin">super_admin</option>
+          </select>
+          <button type="submit">Update Role</button>
+        </form>
+
+        <form id="signal-approve-form" class="stack">
+          <h2>Signal Approval</h2>
+          <select id="admin-signal"></select>
+          <select id="admin-signal-status">
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+            <option value="pending">pending</option>
+          </select>
+          <button type="submit">Apply Status</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Recent Bets</h2>
+        <div id="admin-bets" class="stack"></div>
+      </section>
+
+      <p id="admin-status" class="status"></p>
+    </main>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1996 @@
+{
+  "users": [
+    {
+      "role": "super_admin",
+      "id": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "email": "stephemutiso19@gmail.com",
+      "username": "CALEB",
+      "passwordHash": "511f3a86ff137ec76f2dd4edb664ce98:98b763da33c1542ba046fb9de0f4514ade50d8f476b9db85d2a7e97ae19c03c2",
+      "fullName": "ofx steve",
+      "phone": "0717876564",
+      "country": "KE",
+      "dateOfBirth": "1980-01-06",
+      "walletBalance": 861.03,
+      "kycStatus": "registered",
+      "dailyDepositLimit": 1000,
+      "selfExcludedUntil": null,
+      "createdAt": "2026-03-06T11:32:23.175Z"
+    },
+    {
+      "role": "user",
+      "id": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "email": "dmutua618@gmail.com",
+      "username": "0717876566",
+      "passwordHash": "78d6d8ae48ed8c65d3679605bcd89322:3f1d5341ec2209ddacc474a5f75d78bde0de43d2071cc5b2c71c3f022aedaf7b",
+      "fullName": "ofx steve",
+      "phone": "0717876566",
+      "country": "KE",
+      "dateOfBirth": "1980-12-03",
+      "walletBalance": 49740,
+      "kycStatus": "verified",
+      "dailyDepositLimit": 100000,
+      "selfExcludedUntil": null,
+      "createdAt": "2026-03-06T13:13:29.451Z"
+    },
+    {
+      "role": "super_admin",
+      "id": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "email": "caleb-admin@betpesa.local",
+      "username": "admin.dolazetu.com",
+      "passwordHash": "7903f414152cb984d5b1a101869b5487:6777b19608b16d0d31a32616bff0526525472b79bae62e914833f3f750921284",
+      "fullName": "Dolazetu Super Admin",
+      "phone": "0702249813",
+      "country": "KE",
+      "dateOfBirth": "1995-01-01",
+      "walletBalance": 0,
+      "kycStatus": "verified",
+      "dailyDepositLimit": 100000,
+      "selfExcludedUntil": null,
+      "createdAt": "2026-03-06T13:28:27.903Z"
+    },
+    {
+      "role": "user",
+      "id": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "email": "stephenmutiso19@gmail.com",
+      "username": "0717876567",
+      "passwordHash": "2c5eb10a6ffd162a30966ba93ab4053d:3a490e29c0abc52e1a4d75f123ab15b1ec1208d9b65fa1b1b4dcbcf0e49f07f5",
+      "fullName": "ofx steve",
+      "phone": "0717876567",
+      "country": "KE",
+      "dateOfBirth": "1980-06-06",
+      "walletBalance": 0,
+      "kycStatus": "unverified",
+      "dailyDepositLimit": 1000,
+      "selfExcludedUntil": null,
+      "createdAt": "2026-03-07T12:55:18.310Z"
+    },
+    {
+      "role": "signal_provider",
+      "id": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "email": "signals@dolazetu.com",
+      "username": "signal-admin.dolazetu.com",
+      "passwordHash": "2ca2a8bee309c5955eb24b503fb5ed94:5151f943e1498a79b4813628f5c6bfaf673b0451ad51edc5d2ad5c8cd58239d0",
+      "fullName": "Dolazetu Signal Admin",
+      "phone": "0702249814",
+      "country": "KE",
+      "dateOfBirth": "1995-01-01",
+      "walletBalance": 0,
+      "kycStatus": "verified",
+      "dailyDepositLimit": 100000,
+      "selfExcludedUntil": null,
+      "createdAt": "2026-03-07T18:37:18.666Z"
+    }
+  ],
+  "sessions": [
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "1c7d5957-92a1-4b49-8c46-99f8142da555",
+      "expiresAt": "2026-03-13T11:48:07.497Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "26bc7683-3c81-4c01-8c8f-95fa100faf6f",
+      "expiresAt": "2026-03-13T11:57:08.986Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "8516b90c-d292-40da-8956-44055b6cfc12",
+      "expiresAt": "2026-03-13T11:57:12.625Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "748d160a-fe58-4fa0-9aa1-b4407bd90d6f",
+      "expiresAt": "2026-03-13T11:57:16.806Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "978f6119-8db0-4902-a9c4-2d49887cea8e",
+      "expiresAt": "2026-03-13T11:57:20.271Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "1115cc9d-0985-4a24-9ecd-af299ceb23a9",
+      "expiresAt": "2026-03-13T12:08:22.390Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "89cf94c2-9474-4c7a-afbe-b4c39e1ca23d",
+      "expiresAt": "2026-03-13T12:08:24.297Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "6377fea1-adb5-40ea-a70d-b61a8e64d915",
+      "expiresAt": "2026-03-13T12:08:25.958Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "7512a9ee-adf1-4f45-8468-0b839c1d5f51",
+      "expiresAt": "2026-03-13T12:08:27.501Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "7cbeb064-8aed-481f-9671-f264cfd6f7ac",
+      "expiresAt": "2026-03-13T12:09:11.704Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "c59a55fd-16c7-4d8a-8537-b42c1196deed",
+      "expiresAt": "2026-03-13T12:09:15.929Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "a46572a9-21e9-463f-abf6-2beece3a2d69",
+      "expiresAt": "2026-03-13T12:09:18.934Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "jti": "f088c0fa-cc79-4dc7-87af-8b26ca3cf457",
+      "expiresAt": "2026-03-13T12:09:20.684Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "jti": "d1a5ddf7-e42f-4e5d-b853-5b5da4902748",
+      "expiresAt": "2026-03-14T18:21:08.648Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "jti": "58fc65e0-c6fa-4c72-82b0-3c4b2ac1d481",
+      "expiresAt": "2026-03-14T18:56:55.712Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "curl/8.18.0"
+    },
+    {
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "jti": "932b5bef-dfce-48f6-aedb-7b601f0961bb",
+      "expiresAt": "2026-03-14T20:03:30.030Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "jti": "ec052369-83a1-4090-bac3-827b81f7f3e2",
+      "expiresAt": "2026-03-14T20:24:01.300Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    },
+    {
+      "userId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "jti": "7133efc3-fc23-4fa6-af48-92b0f8726a9e",
+      "expiresAt": "2026-03-14T20:25:26.514Z",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt_001",
+      "league": "Premier League",
+      "homeTeam": "Arsenal",
+      "awayTeam": "Chelsea",
+      "startsAt": "2026-03-08T17:00:00Z",
+      "status": "open",
+      "markets": {
+        "homeWin": 1.95,
+        "draw": 3.4,
+        "awayWin": 4.1
+      }
+    },
+    {
+      "id": "evt_002",
+      "league": "La Liga",
+      "homeTeam": "Barcelona",
+      "awayTeam": "Sevilla",
+      "startsAt": "2026-03-08T20:00:00Z",
+      "status": "open",
+      "markets": {
+        "homeWin": 1.62,
+        "draw": 3.9,
+        "awayWin": 5.5
+      }
+    }
+  ],
+  "bets": [
+    {
+      "id": "87fdc0fa-3805-4d67-aa13-1853c53dce04",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "eventId": "evt_002",
+      "market": "homeWin",
+      "odds": 1.62,
+      "stake": 10,
+      "potentialPayout": 16.2,
+      "status": "open",
+      "createdAt": "2026-03-06T11:50:47.329Z",
+      "updatedAt": "2026-03-06T11:50:47.329Z"
+    },
+    {
+      "id": "21883498-215c-4bc3-8c76-15e1fc667b58",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "eventId": "evt_002",
+      "market": "homeWin",
+      "odds": 1.62,
+      "stake": 10,
+      "potentialPayout": 16.2,
+      "status": "open",
+      "createdAt": "2026-03-06T11:50:47.834Z",
+      "updatedAt": "2026-03-06T11:50:47.834Z"
+    },
+    {
+      "id": "806a4dad-15cf-4f8c-8800-0c9ef91191ca",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "eventId": "evt_001",
+      "market": "draw",
+      "odds": 3.4,
+      "stake": 10,
+      "potentialPayout": 34,
+      "status": "open",
+      "createdAt": "2026-03-06T11:51:56.464Z",
+      "updatedAt": "2026-03-06T11:51:56.464Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "99984d25-bb14-4893-8919-5b3b1130859b",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "deposit",
+      "direction": "credit",
+      "amount": 200,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "DEP-8B43DBB1",
+      "createdAt": "2026-03-06T11:43:10.602Z"
+    },
+    {
+      "id": "3add568e-519f-400a-9164-9a0021f8d712",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "deposit",
+      "direction": "credit",
+      "amount": 200,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "DEP-B84CF105",
+      "createdAt": "2026-03-06T11:50:21.930Z"
+    },
+    {
+      "id": "54dc95cf-f98c-428f-b5c2-eb89c4dfd531",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "deposit",
+      "direction": "credit",
+      "amount": 200,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "DEP-1F50D6B2",
+      "createdAt": "2026-03-06T11:50:30.075Z"
+    },
+    {
+      "id": "7a9362d9-b6d8-434e-a293-820b779ab1a1",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "deposit",
+      "direction": "credit",
+      "amount": 200,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "DEP-464032EA",
+      "createdAt": "2026-03-06T11:50:33.706Z"
+    },
+    {
+      "id": "50751a4c-cdb0-4557-98d7-54ff11bb12d2",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "deposit",
+      "direction": "credit",
+      "amount": 200,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "DEP-9B8EF822",
+      "createdAt": "2026-03-06T11:50:36.615Z"
+    },
+    {
+      "id": "0bbfbf32-9345-470c-b452-9e65eebd0ff7",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "BET-87FDC0FA",
+      "createdAt": "2026-03-06T11:50:47.330Z"
+    },
+    {
+      "id": "0a920b3a-ebed-45fe-a7ef-2edd469d0cc7",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "BET-21883498",
+      "createdAt": "2026-03-06T11:50:47.834Z"
+    },
+    {
+      "id": "c66949de-9dc9-45ba-b23f-d734c6e74ffe",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "BET-806A4DAD",
+      "createdAt": "2026-03-06T11:51:56.464Z"
+    },
+    {
+      "id": "f8ab11e4-e0e1-412e-a6dc-7972ba2765f6",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-0D23E676",
+      "createdAt": "2026-03-06T12:10:54.705Z"
+    },
+    {
+      "id": "491fc9da-056f-4191-aa0d-d77541fc8d21",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "payout_credit",
+      "direction": "credit",
+      "amount": 11.03,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVP-BBA229F2",
+      "createdAt": "2026-03-06T12:10:59.774Z"
+    },
+    {
+      "id": "da4728a5-9a93-4930-be19-851ef29a009e",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 100,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-1E6C762C",
+      "createdAt": "2026-03-06T12:16:01.906Z"
+    },
+    {
+      "id": "9a17c734-1c57-4a7f-8be4-922754bc7859",
+      "userId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-35D504C0",
+      "createdAt": "2026-03-06T12:43:23.635Z"
+    },
+    {
+      "id": "d914db1e-5a6a-4b50-887f-4048bec36309",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 100,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-5FD8B846",
+      "createdAt": "2026-03-07T19:10:40.815Z"
+    },
+    {
+      "id": "a08951c3-b215-455a-b209-5ed2f618430b",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 100,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-07D2F7B9",
+      "createdAt": "2026-03-07T19:10:59.591Z"
+    },
+    {
+      "id": "2b87301f-00f4-4dda-8839-15510e26cb67",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-AFB248DF",
+      "createdAt": "2026-03-07T19:25:03.377Z"
+    },
+    {
+      "id": "2428e7b8-13b7-4c17-8c9c-10d10106da86",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-0FE38974",
+      "createdAt": "2026-03-07T19:30:13.986Z"
+    },
+    {
+      "id": "a464d2f0-652a-4831-a257-62373a732c3e",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-A50FF2C0",
+      "createdAt": "2026-03-07T20:03:46.780Z"
+    },
+    {
+      "id": "001e6892-e8d6-46c7-8b25-f9717c43a408",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-728EE030",
+      "createdAt": "2026-03-07T20:14:46.361Z"
+    },
+    {
+      "id": "1435eb3f-b787-4485-b944-bbe6ea88293d",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-856A4792",
+      "createdAt": "2026-03-07T20:15:11.078Z"
+    },
+    {
+      "id": "3f4fb92c-14b3-4c28-92de-cfa2e049ef65",
+      "userId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "walletTxnType": "stake_debit",
+      "direction": "debit",
+      "amount": 10,
+      "currency": "KES",
+      "status": "completed",
+      "reference": "AVB-C21389A6",
+      "createdAt": "2026-03-07T20:24:39.364Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "dcf08b78-555d-4c58-ae61-e3d66d3c93cc",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "register",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "email": "stephemutiso19@gmail.com"
+      },
+      "createdAt": "2026-03-06T11:32:23.177Z"
+    },
+    {
+      "id": "8f4e95de-3855-403f-99b5-30625bc987fe",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:33:24.186Z"
+    },
+    {
+      "id": "8e2ed9b8-608a-4a2f-a642-86ca8e88fabc",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "aa7fa77b-ea6c-4bad-bd4f-d8901c376e87",
+      "metadata": null,
+      "createdAt": "2026-03-06T11:33:40.693Z"
+    },
+    {
+      "id": "d93b3b03-ba28-48b3-97d8-23ed383bf534",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:38:01.591Z"
+    },
+    {
+      "id": "f0bbfe1e-5eeb-4b46-9b80-d1b54901c89f",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "9798fe6a-351c-4b91-81bf-76d73969279c",
+      "metadata": null,
+      "createdAt": "2026-03-06T11:38:07.263Z"
+    },
+    {
+      "id": "2511ee4f-228b-4eea-b097-c5f9f114f25f",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:41:25.694Z"
+    },
+    {
+      "id": "1da7c1c5-c0f1-4514-9924-9caa5d6a868d",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "profile_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "fullName": "ofx steve",
+        "phone": "0717876564",
+        "country": "KE",
+        "dailyDepositLimit": 1000,
+        "selfExcludedUntil": null
+      },
+      "createdAt": "2026-03-06T11:42:27.768Z"
+    },
+    {
+      "id": "3a0a3042-62d3-4700-aacf-401e52fcaff2",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:42:29.201Z"
+    },
+    {
+      "id": "3b21ed7f-a2b1-48b5-b522-006c2882402a",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "profile_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "fullName": "ofx steve",
+        "phone": "0717876564",
+        "country": "KE",
+        "dailyDepositLimit": 1000,
+        "selfExcludedUntil": null
+      },
+      "createdAt": "2026-03-06T11:42:42.426Z"
+    },
+    {
+      "id": "47acf78c-0420-4aae-8d41-c9e05382a69e",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "3456"
+      },
+      "createdAt": "2026-03-06T11:42:48.513Z"
+    },
+    {
+      "id": "faa77771-0a1f-45b2-8b6b-3b68aa277b87",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "deposit",
+      "entityType": "transaction",
+      "entityId": null,
+      "metadata": {
+        "amount": 200
+      },
+      "createdAt": "2026-03-06T11:43:10.609Z"
+    },
+    {
+      "id": "2c76e57e-8b22-4ec2-bb1b-a46c0ba5f514",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:43:31.023Z"
+    },
+    {
+      "id": "0b719ebf-a390-4498-a050-44e2bb208cf8",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "profile_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "fullName": "ofx steve",
+        "phone": "0717876564",
+        "country": "KE",
+        "dailyDepositLimit": 1000,
+        "selfExcludedUntil": null
+      },
+      "createdAt": "2026-03-06T11:43:43.772Z"
+    },
+    {
+      "id": "356adc08-8641-450c-a369-5f151e7b0291",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "6d55bd20-549f-4ccb-aa12-5fa4c1290e29",
+      "metadata": null,
+      "createdAt": "2026-03-06T11:47:44.308Z"
+    },
+    {
+      "id": "09319761-0969-4411-9277-b706c247fc17",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:48:07.501Z"
+    },
+    {
+      "id": "8257e615-0199-48d1-b459-1b76b52f58d3",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:48:48.658Z"
+    },
+    {
+      "id": "cbaddb66-645c-4287-9997-312df29c7f21",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "profile_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "fullName": "ofx steve",
+        "phone": "0717876564",
+        "country": "KE",
+        "dailyDepositLimit": 1000,
+        "selfExcludedUntil": null
+      },
+      "createdAt": "2026-03-06T11:48:54.257Z"
+    },
+    {
+      "id": "f91bc15c-567a-4ed9-ab6f-a2cbde8f2c73",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:49:26.826Z"
+    },
+    {
+      "id": "946f7db9-f6e2-4704-bda4-89cf56d23908",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "profile_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "fullName": "ofx steve",
+        "phone": "0717876564",
+        "country": "KE",
+        "dailyDepositLimit": 1000,
+        "selfExcludedUntil": null
+      },
+      "createdAt": "2026-03-06T11:49:28.333Z"
+    },
+    {
+      "id": "932d941e-57ba-4de4-b125-a47eafb735d5",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:49:51.914Z"
+    },
+    {
+      "id": "f3e6b52e-36f2-429b-8c11-946d123ebac2",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "kyc_submit",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "idNumberLast4": "5678"
+      },
+      "createdAt": "2026-03-06T11:50:10.537Z"
+    },
+    {
+      "id": "41f4cb03-ec3e-4e76-bb2b-cdf6198f08b6",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "deposit",
+      "entityType": "transaction",
+      "entityId": null,
+      "metadata": {
+        "amount": 200
+      },
+      "createdAt": "2026-03-06T11:50:21.940Z"
+    },
+    {
+      "id": "28d6cd32-a036-441e-9be1-3e7c1e83fb1c",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "deposit",
+      "entityType": "transaction",
+      "entityId": null,
+      "metadata": {
+        "amount": 200
+      },
+      "createdAt": "2026-03-06T11:50:30.089Z"
+    },
+    {
+      "id": "d49aaee8-477b-4475-a222-02414c322542",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "deposit",
+      "entityType": "transaction",
+      "entityId": null,
+      "metadata": {
+        "amount": 200
+      },
+      "createdAt": "2026-03-06T11:50:33.707Z"
+    },
+    {
+      "id": "605c933a-c163-4cf1-93a2-ecc5975a5729",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "deposit",
+      "entityType": "transaction",
+      "entityId": null,
+      "metadata": {
+        "amount": 200
+      },
+      "createdAt": "2026-03-06T11:50:36.620Z"
+    },
+    {
+      "id": "98e31d51-df94-4020-baca-d6dbd5c6fb0e",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "place_bet",
+      "entityType": "bet",
+      "entityId": "87fdc0fa-3805-4d67-aa13-1853c53dce04",
+      "metadata": {
+        "eventId": "evt_002",
+        "market": "homeWin",
+        "stake": 10,
+        "odds": 1.62
+      },
+      "createdAt": "2026-03-06T11:50:47.331Z"
+    },
+    {
+      "id": "9800696b-e5e2-4f84-a47c-c5f68ec2582d",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "place_bet",
+      "entityType": "bet",
+      "entityId": "21883498-215c-4bc3-8c76-15e1fc667b58",
+      "metadata": {
+        "eventId": "evt_002",
+        "market": "homeWin",
+        "stake": 10,
+        "odds": 1.62
+      },
+      "createdAt": "2026-03-06T11:50:47.837Z"
+    },
+    {
+      "id": "b853aefe-c0d4-4b2f-b7a1-e3c8174138e8",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "place_bet",
+      "entityType": "bet",
+      "entityId": "806a4dad-15cf-4f8c-8800-0c9ef91191ca",
+      "metadata": {
+        "eventId": "evt_001",
+        "market": "draw",
+        "stake": 10,
+        "odds": 3.4
+      },
+      "createdAt": "2026-03-06T11:51:56.466Z"
+    },
+    {
+      "id": "90f987de-00c1-4324-be40-1de75dd5c691",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:57:08.989Z"
+    },
+    {
+      "id": "b03a6ec1-0c90-40b8-8713-a9077e5f234b",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:57:12.627Z"
+    },
+    {
+      "id": "9be12d42-8773-482b-b49a-91665e66cc41",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:57:16.807Z"
+    },
+    {
+      "id": "ba2e97f5-a519-437b-ab61-c06f64bdc80f",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T11:57:20.274Z"
+    },
+    {
+      "id": "9b8b024f-67a0-4106-a750-c68d42fa7cea",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:08:22.391Z"
+    },
+    {
+      "id": "06141a6b-5bde-44ec-90e4-bb4f1ef36545",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:08:24.298Z"
+    },
+    {
+      "id": "3d0562fd-4b4f-4196-9c29-afc0bf8f3406",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:08:25.959Z"
+    },
+    {
+      "id": "ecaa5b79-7d7f-486d-b58f-423f084111c0",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:08:27.502Z"
+    },
+    {
+      "id": "ff254c06-78dc-4bea-b4e3-7fcd3cd241a3",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:09:11.705Z"
+    },
+    {
+      "id": "18cf865d-26bc-496e-9530-612171abd1f8",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:09:15.930Z"
+    },
+    {
+      "id": "0b287160-1942-4ed2-92b3-35d6ebf203ef",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:09:18.935Z"
+    },
+    {
+      "id": "2755208e-e5e1-4fc4-9cc1-c0bd040f7c8a",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:09:20.685Z"
+    },
+    {
+      "id": "3d002608-393d-4161-8b55-9742e17ab741",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:09:49.929Z"
+    },
+    {
+      "id": "2567a353-2324-482d-8174-586e2cf90f6a",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "5801766c-42ad-4eec-8420-ff8447b89d72",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-06T12:10:54.706Z"
+    },
+    {
+      "id": "6f7688d3-87a3-481c-9c12-e5c58c7c60e4",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "aviator_cashout",
+      "entityType": "aviator_round",
+      "entityId": "5801766c-42ad-4eec-8420-ff8447b89d72",
+      "metadata": {
+        "stake": 10,
+        "payout": 11.03,
+        "cashoutMultiplier": 1.1
+      },
+      "createdAt": "2026-03-06T12:10:59.777Z"
+    },
+    {
+      "id": "bd78c483-8ef3-4611-8ca5-0d37a51d45df",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "8dca2582-58ed-42d3-9159-c10c50fc0d1c",
+      "metadata": {
+        "stake": 100
+      },
+      "createdAt": "2026-03-06T12:16:01.936Z"
+    },
+    {
+      "id": "f09c2a0f-7b11-4445-82c1-a7683145b060",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "df0b5981-5d20-4f44-9633-680c348402af",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-06T12:43:23.650Z"
+    },
+    {
+      "id": "b3761c27-2440-4e61-814b-072a4fe8b336",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "6817c4aa-4547-4dcb-ba7e-482249ab70b4",
+      "metadata": null,
+      "createdAt": "2026-03-06T12:53:23.102Z"
+    },
+    {
+      "id": "62544a9d-292b-4980-95ca-cc25f9e59252",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T12:53:25.344Z"
+    },
+    {
+      "id": "cb4393cd-15d7-4387-a8e5-99e3bc4e71a0",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "89a1a155-ad99-4862-baf7-f3b812e6edc7",
+      "metadata": null,
+      "createdAt": "2026-03-06T13:12:37.485Z"
+    },
+    {
+      "id": "88bc6bbf-ea08-4179-88a7-7891189388e3",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "register",
+      "entityType": "user",
+      "entityId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "metadata": {
+        "email": "dmutua618@gmail.com"
+      },
+      "createdAt": "2026-03-06T13:13:29.452Z"
+    },
+    {
+      "id": "ed50b89f-e216-46c9-877a-200c582dea76",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T13:13:33.336Z"
+    },
+    {
+      "id": "41715968-77ab-4926-9097-03f2b27f6cad",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "05e8b035-fc4f-4c3e-844c-09670ee1cb45",
+      "metadata": null,
+      "createdAt": "2026-03-06T13:21:36.608Z"
+    },
+    {
+      "id": "15f9ad45-3306-4236-9455-87f0eb7c2d41",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T13:28:40.741Z"
+    },
+    {
+      "id": "e38a693d-c59e-43f8-b165-66442d63d381",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "50191087-f9ea-48be-9ec6-879fb6b5b406",
+      "metadata": null,
+      "createdAt": "2026-03-06T13:28:52.368Z"
+    },
+    {
+      "id": "0578ac6d-5a22-450b-b800-281da37c19c3",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T13:29:30.285Z"
+    },
+    {
+      "id": "96dec12e-6e7f-4487-a193-e172be238545",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "f44814a8-ff9d-4405-9131-23b0a6de1992",
+      "metadata": null,
+      "createdAt": "2026-03-06T13:38:44.536Z"
+    },
+    {
+      "id": "b8ee5059-c290-4878-b31d-0db78f61b5c1",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-06T13:38:52.348Z"
+    },
+    {
+      "id": "077cd6ff-dcf9-4ddb-b51a-9e5c364dd2fa",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "80ae2091-7f9a-4ac0-83b2-818883984d48",
+      "metadata": null,
+      "createdAt": "2026-03-07T12:53:55.678Z"
+    },
+    {
+      "id": "4c5887e4-0eca-4226-89ab-9bf4da60e5f5",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T12:53:58.128Z"
+    },
+    {
+      "id": "ddc012b9-3e3c-49c8-bb10-9426fd22b64a",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "987521f6-2f90-493e-b63b-051d82ec329c",
+      "metadata": null,
+      "createdAt": "2026-03-07T12:54:01.621Z"
+    },
+    {
+      "id": "9709039c-1e7c-478f-a452-9570faf3060b",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T12:54:07.497Z"
+    },
+    {
+      "id": "8f24c10d-dca4-405f-b315-6bdbac727ac5",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "ad2cbe57-bd56-44d7-8ea8-6378bf421588",
+      "metadata": null,
+      "createdAt": "2026-03-07T12:54:11.756Z"
+    },
+    {
+      "id": "ed8979fa-d82c-4bab-8ac5-ba5107f66425",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T12:54:25.080Z"
+    },
+    {
+      "id": "a04b2b86-345f-452e-9c16-f87a4cd96f4b",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "b992afb1-d03c-4617-8bcf-f695a6f4184c",
+      "metadata": null,
+      "createdAt": "2026-03-07T12:54:32.967Z"
+    },
+    {
+      "id": "b1b2ab79-624c-4b1f-914f-c4c9ee3fb45f",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "register",
+      "entityType": "user",
+      "entityId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "metadata": {
+        "email": "stephenmutiso19@gmail.com"
+      },
+      "createdAt": "2026-03-07T12:55:18.313Z"
+    },
+    {
+      "id": "d5c5fbf4-f124-4c0f-9118-9d7d10152640",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T12:55:23.171Z"
+    },
+    {
+      "id": "4d8cb4b5-f6f2-4faf-8a7a-556eb59d0d1b",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "40143469-84d2-446e-bf1d-ad305aa4a49c",
+      "metadata": null,
+      "createdAt": "2026-03-07T18:20:38.973Z"
+    },
+    {
+      "id": "f7e60b04-65b4-456f-8fa7-35efdcfbaf2e",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:21:08.650Z"
+    },
+    {
+      "id": "fa049728-0254-40a5-9be8-6ec6a7f74198",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:21:45.546Z"
+    },
+    {
+      "id": "35196bdf-675c-44c9-b46c-f151ddd741ca",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "1d2205a2-3ab2-4190-88a9-9dd732387992",
+      "metadata": null,
+      "createdAt": "2026-03-07T18:34:59.888Z"
+    },
+    {
+      "id": "5cc0ba12-ecb0-44f0-8e22-0effdb091439",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:35:21.134Z"
+    },
+    {
+      "id": "b93bbb64-5535-495a-a6b3-4d79c15e1430",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "292e665d-2fc3-4756-a054-21fb35540ed1",
+      "metadata": null,
+      "createdAt": "2026-03-07T18:36:15.375Z"
+    },
+    {
+      "id": "b2bdcedb-2e22-4e3d-9a23-b027ff1b18e7",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:56:55.718Z"
+    },
+    {
+      "id": "8140738e-89ca-4c6e-8ec3-9a1e9a8096e5",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:58:54.993Z"
+    },
+    {
+      "id": "1789b40b-ab24-4552-83be-77d6d058b38a",
+      "actorType": "admin",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "user_role_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "role": "super_admin"
+      },
+      "createdAt": "2026-03-07T18:59:22.100Z"
+    },
+    {
+      "id": "61c13aa0-60b8-4fbe-aa27-6507bf612d91",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "9b840e04-71eb-418d-9875-fdc9b84efe44",
+      "metadata": null,
+      "createdAt": "2026-03-07T18:59:26.799Z"
+    },
+    {
+      "id": "c2d6eae9-fc5d-4876-a0db-cd21288d5cbd",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T18:59:55.862Z"
+    },
+    {
+      "id": "1e73bf75-ca17-45a1-8724-c8c56e262679",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "4d36d597-4594-4742-a283-0e0f82b65cea",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:06:17.857Z"
+    },
+    {
+      "id": "1c27e8d9-9204-4e3f-a8d6-5e9f9594ff35",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:06:24.547Z"
+    },
+    {
+      "id": "14d8bfed-1d74-4be1-923d-a5adb7d8731b",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "a3cc8141-1b95-4076-8067-aaa69d9419ea",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:06:28.843Z"
+    },
+    {
+      "id": "06a2b498-2871-4e46-8625-9ce2a5def05c",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:06:34.652Z"
+    },
+    {
+      "id": "8dba2758-9eb7-4241-9982-2d502f5185b4",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "236801ea-354b-44df-bff5-f23abddaae37",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:06:39.827Z"
+    },
+    {
+      "id": "af1e9d87-c110-4cdb-a982-76c1ba57acf9",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:06:53.944Z"
+    },
+    {
+      "id": "0e6e4852-5de0-4d48-b876-6d31e44ebf0e",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "7970aa84-794d-411e-8aee-22854c96f371",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:09:21.563Z"
+    },
+    {
+      "id": "dd5793cd-1ed6-4294-855d-bdcb3b1913ba",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:09:28.512Z"
+    },
+    {
+      "id": "01204789-09a3-421e-86c1-b0874330813e",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "a061ed15-421b-4e69-88b0-8ea1d0c14a66",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:09:39.724Z"
+    },
+    {
+      "id": "890720a5-4859-44df-a739-b95153b0a1d2",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:09:53.203Z"
+    },
+    {
+      "id": "1082ff77-9afb-440b-8b7d-7a845e3a8823",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "c6b7cd1f-a49f-4a79-9880-ae0fac2b5490",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:10:01.974Z"
+    },
+    {
+      "id": "0433e7ba-9f82-4c79-a9e2-246f8fa1b678",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:10:11.293Z"
+    },
+    {
+      "id": "d1d0294b-925e-4fe7-ae56-8f9a2d27ee91",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "00ae4963-ba24-4fad-ad60-f50f8d7f1012",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:10:17.176Z"
+    },
+    {
+      "id": "417bf1f5-05b3-47b4-930a-667d18bada61",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:10:26.918Z"
+    },
+    {
+      "id": "7b6e14aa-fd3b-4429-936f-5168c2c2b4cd",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "ffe4ed78-025e-4991-ab92-eda9d06c6fb0",
+      "metadata": {
+        "stake": 100
+      },
+      "createdAt": "2026-03-07T19:10:40.833Z"
+    },
+    {
+      "id": "cf14af24-db2a-4eca-a7a3-e57416f098ce",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "fccef138-eb6e-47f6-adb6-38040497f7cb",
+      "metadata": {
+        "stake": 100
+      },
+      "createdAt": "2026-03-07T19:10:59.592Z"
+    },
+    {
+      "id": "d6c26f04-9358-4066-b0a3-20bed7be98bf",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "c2cd69a7-2baa-47b5-873e-700fe0368309",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T19:25:03.388Z"
+    },
+    {
+      "id": "9e0ec2d4-0053-4d6b-81b8-c1b4f05d4493",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "c2bcabd3-50a3-4762-b425-07d009490378",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T19:30:13.989Z"
+    },
+    {
+      "id": "800ee241-1857-4a6f-b6ec-f3490e821f33",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "c637403c-4a46-4806-affd-6a737e72135b",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:30:36.836Z"
+    },
+    {
+      "id": "8289cf49-4e83-40b3-8abf-0502c76427aa",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:30:38.813Z"
+    },
+    {
+      "id": "28b0612c-78a9-4cca-9ee4-26e8d1e2a045",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "0787c7b4-7ed7-4c87-b00f-87fd273c6a4b",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:34:25.663Z"
+    },
+    {
+      "id": "1de95ced-b399-403e-a7ba-1b724faf9c29",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:34:32.601Z"
+    },
+    {
+      "id": "0cf995b8-cfbd-42a9-affd-75f8c2255e11",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "9ebec7de-d59f-4534-bf0b-e979c0ac2362",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:34:35.510Z"
+    },
+    {
+      "id": "3d248418-683c-41a6-83a5-badb8db3b6d0",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:34:43.066Z"
+    },
+    {
+      "id": "74afa201-58f7-421b-8337-a1f736769cd3",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "6e4f8a45-427d-4fd2-9ea9-e64201dcd541",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:35:09.629Z"
+    },
+    {
+      "id": "2d7fbd0e-4652-4c6a-9598-288239827216",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:35:19.440Z"
+    },
+    {
+      "id": "5bb5d1a8-8163-48a5-84a1-5a97f10ded36",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "2688c936-bff0-4d0a-82d2-e8e5f3af27d8",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:36:04.280Z"
+    },
+    {
+      "id": "dd850931-edb9-4bde-9938-c5e2f0e6598c",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:36:10.018Z"
+    },
+    {
+      "id": "00e737f4-8130-4b90-bb81-4dcbcedd22ff",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "baa9f4cb-d077-4e8d-8331-eb506f6ca333",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:43:47.223Z"
+    },
+    {
+      "id": "555d92e5-d889-4862-9b76-e24774767093",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:43:58.434Z"
+    },
+    {
+      "id": "21560552-5abc-4416-9bc2-9486fb917889",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "0a128d8e-d6f8-42ee-a296-6bea085874e9",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:44:01.773Z"
+    },
+    {
+      "id": "81e1b153-e78a-422b-a5c3-66e3a671e848",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:44:06.365Z"
+    },
+    {
+      "id": "db64b6f5-b072-4fd2-8023-11bbdeef8897",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "624c1619-e7db-485a-8b83-12b12a615564",
+      "metadata": null,
+      "createdAt": "2026-03-07T19:49:45.350Z"
+    },
+    {
+      "id": "08ff584e-c773-4491-b55d-73a69dda6adb",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T19:49:53.816Z"
+    },
+    {
+      "id": "869d0204-7d5c-4feb-ad31-92a919bc4230",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "3dcfa55e-4d38-437f-99c7-3352beedc7d4",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:03:04.495Z"
+    },
+    {
+      "id": "5457829d-ab1e-429f-9228-b5121a87dc6c",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:03:11.545Z"
+    },
+    {
+      "id": "baf185ac-bb6e-40ad-a4ec-62e7b101f557",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "ee094f85-08a5-4742-969c-07a3803a8e7c",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:03:16.856Z"
+    },
+    {
+      "id": "50fcd49f-449e-400f-950e-4e0ae4e520f1",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:03:30.032Z"
+    },
+    {
+      "id": "f24ae924-14f9-4381-9823-71abbbf269e6",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "70d92564-8b46-447b-b6db-2d54995b51d8",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T20:03:46.784Z"
+    },
+    {
+      "id": "a7b607bc-cd2a-41f2-b088-3d899892c202",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:13:02.810Z"
+    },
+    {
+      "id": "5f74b7db-50d6-4578-98c4-b725022c96b3",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "26e443a9-35a5-4bd3-aa60-cfeafe1ec3f8",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:13:09.882Z"
+    },
+    {
+      "id": "5909e1be-3e65-4e3f-9713-00731daef712",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:13:16.591Z"
+    },
+    {
+      "id": "c3f5e984-ae3d-41f5-9c82-cd63308e2da7",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "4fa9d522-e9c8-412b-b0a8-eec2bde53a54",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T20:14:46.369Z"
+    },
+    {
+      "id": "09573857-195d-4ef0-b3d4-c320718877d1",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "22d90e2d-3ed2-4e80-a0fa-a75ad3b4d3f2",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T20:15:11.081Z"
+    },
+    {
+      "id": "ee82f5f0-d3ab-4964-9f44-44cb4da43f3d",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "61781a12-bc00-41e4-a567-c9ddf72bbb39",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:23:47.036Z"
+    },
+    {
+      "id": "06fc2213-7d4e-44ec-a1c2-232c6191bd20",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:23:52.861Z"
+    },
+    {
+      "id": "55370617-b7dd-49bf-8a6f-fd146056028c",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "4502b8e1-ef7c-438a-b2c1-a1ee992d4c9c",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:23:55.687Z"
+    },
+    {
+      "id": "eb2f1ae8-9ab0-485a-9895-7a0bc87df04f",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:24:01.309Z"
+    },
+    {
+      "id": "7a053530-4d94-41f8-8677-2d9f71776e56",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "aviator_bet",
+      "entityType": "aviator_round",
+      "entityId": "c81e9f25-55a6-4290-a671-0420e5738489",
+      "metadata": {
+        "stake": 10
+      },
+      "createdAt": "2026-03-07T20:24:39.365Z"
+    },
+    {
+      "id": "a11ecfef-6ae6-4d3c-97fe-b3a4bca97b90",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:25:05.416Z"
+    },
+    {
+      "id": "263861d7-b2dd-469d-a5f6-addca9595415",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "0c01efbb-157c-46b6-a488-feda7af13f97",
+      "metadata": null,
+      "createdAt": "2026-03-07T20:25:22.516Z"
+    },
+    {
+      "id": "90c1b2a0-a2f7-4394-88a1-5321b02b8812",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T20:25:26.515Z"
+    }
+  ],
+  "signals": []
+}

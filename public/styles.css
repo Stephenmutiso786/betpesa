@@ -1,0 +1,660 @@
+:root {
+  --bg: #0f1215;
+  --panel: #171c21;
+  --panel-2: #202830;
+  --text: #e8eef3;
+  --muted: #9aa8b5;
+  --accent: #16a34a;
+  --accent-2: #15803d;
+  --danger: #d93535;
+  --border: #2d3742;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a2128, #0f1215 60%);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  overflow-x: hidden;
+}
+
+.auth-shell,
+.dash-shell {
+  width: min(1100px, 94vw);
+  margin: 1.2rem auto 2rem;
+}
+
+.auth-card,
+.panel,
+.dash-top {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+h1,
+h2 {
+  margin: 0 0 0.6rem;
+}
+
+p,
+small,
+label {
+  color: var(--muted);
+}
+
+.stack {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem;
+  background: #11161b;
+  color: var(--text);
+}
+
+button {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  border-color: var(--accent-2);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+.link-btn {
+  background: transparent;
+  color: var(--muted);
+  border-color: transparent;
+  text-align: left;
+  padding: 0.2rem 0;
+}
+
+.auth-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.mt {
+  margin-top: 0.8rem;
+}
+
+.status {
+  min-height: 1.2rem;
+  font-weight: 700;
+}
+
+.dash-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.top-right {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: end;
+}
+
+.balance {
+  margin: 0;
+  color: var(--text);
+}
+
+.item {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.market-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.market-row button {
+  width: auto;
+}
+
+.aviator-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 0.9rem;
+  align-items: stretch;
+  margin-bottom: 0.8rem;
+}
+
+.aviator-screen {
+  background: #10171d;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  min-height: 520px;
+}
+
+#aviator-canvas {
+  width: 100%;
+  min-height: 420px;
+  height: 420px;
+  border-radius: 8px;
+  border: 1px solid #263240;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.aviator-multiplier {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #5eea8f;
+  margin: 0.2rem 0 0;
+}
+
+.aviator-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 0.8rem;
+  align-items: end;
+  margin-bottom: 0.8rem;
+}
+
+.aviator-odds-panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #111827;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.aviator-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.signal-history-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.signal-chip {
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid #4f5e1f;
+  color: #f5d253;
+  background: #2a2e18;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.signal-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.8rem;
+}
+
+.signal-board {
+  min-height: 360px;
+  border-radius: 14px;
+  border: 1px solid #32353a;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+    url('https://images.unsplash.com/photo-1527489377706-5bf97e608852?auto=format&fit=crop&w=1200&q=60')
+      center/cover;
+  display: grid;
+  place-items: center;
+}
+
+.signal-overlay {
+  width: min(420px, 86%);
+  background: rgba(24, 27, 32, 0.82);
+  border: 1px solid #495260;
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.signal-live {
+  font-size: 5rem;
+  line-height: 1;
+  margin: 0.2rem 0 0.8rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.signal-target {
+  background: #d7d7d7;
+  color: #111;
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+}
+
+.signal-brand {
+  background: #d7d7d7;
+  color: #111;
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.signal-side {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #111827;
+  padding: 0.8rem;
+}
+
+.client-shell {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding-bottom: 68px;
+  background: #050508;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.client-shell .panel {
+  background: #0a0b12;
+  border-color: #1f2230;
+  border-radius: 10px;
+  padding: 0.55rem;
+  margin: 0.4rem 0.35rem 0;
+}
+
+.promo-strip {
+  margin: 0;
+  border-radius: 0;
+  background: linear-gradient(180deg, #ff7b2f, #e24e1f);
+  color: #ffeccf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.promo-strip button {
+  width: auto;
+  background: #ffe0b5;
+  color: #8f2a00;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.72rem;
+}
+
+.brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.3rem 0.4rem 0;
+  border: 1px solid #221d2f;
+  border-radius: 8px;
+  background: #090811;
+  padding: 0.5rem 0.6rem;
+}
+
+.brand-left {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.brand-left strong {
+  font-size: 1.45rem;
+  letter-spacing: 0.03em;
+  color: #d2af59;
+}
+
+.brand-left small {
+  font-size: 0.64rem;
+}
+
+.client-shell .top-right {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: end;
+}
+
+.client-shell .top-right button {
+  width: auto;
+  background: #151325;
+  border: 1px solid #382d62;
+  color: #d7d2f4;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.72rem;
+}
+
+.history-strip {
+  overflow-x: auto;
+}
+
+.history-strip .aviator-chip-list {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.history-strip .aviator-chip-list::-webkit-scrollbar {
+  display: none;
+}
+
+.history-strip .signal-chip {
+  flex: 0 0 auto;
+  background: #241d31;
+  border-color: #3e2e54;
+  color: #f6c266;
+  font-size: 0.74rem;
+  padding: 0.2rem 0.48rem;
+}
+
+.jackpot-strip {
+  min-height: 56px;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
+    linear-gradient(120deg, #4e3a12, #7d5f1e 38%, #b88823 55%, #6f5218);
+  display: grid;
+  place-items: center;
+}
+
+.jackpot-strip small {
+  font-weight: 700;
+  color: #f6e7b3;
+  letter-spacing: 0.08em;
+}
+
+.jackpot-strip strong {
+  font-size: 1.8rem;
+  color: #ffefb0;
+  line-height: 1;
+}
+
+.aviator-panel .aviator-screen {
+  position: relative;
+  min-height: 390px;
+  background: radial-gradient(circle at center, #171827 0, #0c0f1a 60%, #090b11 100%);
+  border-color: #1f2940;
+  overflow: hidden;
+}
+
+.round-line,
+.phase-line {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.aviator-panel .aviator-multiplier {
+  position: absolute;
+  inset: auto 0 52% 0;
+  text-align: center;
+  font-size: 3.4rem;
+  color: #ff4e4e;
+  text-shadow: 0 0 14px rgba(255, 78, 78, 0.5);
+  z-index: 3;
+}
+
+.aviator-panel #aviator-canvas {
+  margin-top: 1.4rem;
+  border-color: #20263a;
+  background: transparent;
+}
+
+.flewaway-overlay {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+}
+
+.flewaway-overlay p {
+  margin: 0 0 0.5rem;
+  color: #ff4242;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.flewaway-overlay strong {
+  background: linear-gradient(180deg, #ff596b, #b1162b);
+  color: #fff;
+  padding: 0.45rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(145, 12, 35, 0.45);
+}
+
+.aviator-controls .controls-top {
+  display: grid;
+  grid-template-columns: minmax(58px, 76px) minmax(58px, 76px) minmax(0, 1fr);
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.aviator-controls .mini-btn {
+  background: #0f1020;
+  color: #9d91cf;
+  border: 1px solid #2d2b48;
+  padding: 0.3rem;
+  font-size: 0.72rem;
+}
+
+.aviator-controls .controls-top input {
+  text-align: center;
+}
+
+.aviator-controls .aviator-actions {
+  grid-template-columns: minmax(92px, 110px) minmax(0, 1fr);
+  margin-bottom: 0;
+}
+
+.aviator-controls #aviator-bet-form button {
+  background: #121220;
+  border-color: #38334f;
+  color: #fff;
+}
+
+.aviator-controls #aviator-cashout-btn {
+  background: linear-gradient(180deg, #ff9b45, #e04624);
+  border-color: #a02d17;
+}
+
+.mobile-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #090812;
+  border-top: 1px solid #231f38;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  padding: 0.35rem;
+}
+
+.mobile-bottom-nav button {
+  background: #0e0c1a;
+  border: 1px solid #2f2950;
+  color: #b49be5;
+  padding: 0.35rem 0.2rem;
+  font-size: 0.7rem;
+}
+
+.admin-shell {
+  width: min(1360px, 98vw);
+  margin: 0.6rem auto 1.2rem;
+}
+
+.admin-topbar {
+  margin-bottom: 0.4rem;
+  border: 1px solid #1f2230;
+  border-radius: 10px;
+  background: #070a12;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+}
+
+.admin-topbar .brand-left strong {
+  font-size: 1.35rem;
+  letter-spacing: 0.03em;
+  color: #d3bf7b;
+}
+
+.admin-topbar .top-right {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.admin-topbar .balance {
+  font-size: 0.82rem;
+  color: #7bdba2;
+}
+
+.admin-topbar button {
+  width: auto;
+  padding: 0.38rem 0.8rem;
+  font-size: 0.72rem;
+  background: #151325;
+  border: 1px solid #3a355a;
+  color: #d8d4f5;
+}
+
+.admin-aviator-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.admin-aviator-screen {
+  min-height: 520px;
+  background: radial-gradient(circle at center, #101525 0, #0b0f19 62%, #090b11 100%);
+  border: 1px solid #22273a;
+}
+
+#admin-aviator-canvas {
+  width: 100%;
+  height: 420px;
+  min-height: 420px;
+  border-radius: 10px;
+  border: 1px solid #20263a;
+  margin-top: 0.8rem;
+  display: block;
+}
+
+.admin-aviator-screen .aviator-multiplier {
+  color: #f5f7ff;
+  font-size: 4.8rem;
+  margin-top: 0.8rem;
+}
+
+.admin-upcoming h3 {
+  margin: 0 0 0.7rem;
+}
+
+.admin-upcoming .item {
+  background: #121728;
+  border-color: #252d45;
+}
+
+@media (max-width: 760px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-top {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .top-right {
+    justify-items: start;
+  }
+
+  .client-shell {
+    width: 100%;
+  }
+
+  .brand-left strong {
+    font-size: 1.25rem;
+  }
+
+  .client-shell .top-right button {
+    font-size: 0.66rem;
+    padding: 0.22rem 0.5rem;
+  }
+
+  .client-shell .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .client-shell .aviator-panel .aviator-screen {
+    min-height: 355px;
+  }
+
+  .client-shell .aviator-panel #aviator-canvas {
+    min-height: 280px;
+    height: 280px;
+  }
+
+  .aviator-panel .aviator-multiplier {
+    font-size: 2.65rem;
+  }
+
+  .admin-shell {
+    width: 100%;
+    margin: 0;
+  }
+
+  .admin-aviator-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #admin-aviator-canvas {
+    min-height: 300px;
+    height: 300px;
+  }
+
+  .admin-aviator-screen .aviator-multiplier {
+    font-size: 3rem;
+  }
+}

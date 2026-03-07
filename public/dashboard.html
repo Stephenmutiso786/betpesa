@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetPesa Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="dash-shell client-shell">
+      <section class="promo-strip">
+        <span>Earn Ksh 500.00 per referral</span>
+        <button type="button">Join Now</button>
+      </section>
+
+      <header class="brand-bar">
+        <div class="brand-left">
+          <strong>BETPESA</strong>
+          <small id="me-line">Loading profile...</small>
+        </div>
+        <div class="top-right">
+          <p class="balance">KES <strong id="wallet-balance">0.00</strong></p>
+          <button id="logout-btn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <section class="panel history-strip">
+        <div id="aviator-odds-list" class="aviator-chip-list"></div>
+      </section>
+
+      <section class="panel jackpot-strip">
+        <small>DAILY JACKPOT</small>
+        <strong>1500x</strong>
+      </section>
+
+      <section class="panel aviator-panel">
+        <div class="aviator-screen">
+          <p class="round-line">Round <strong id="aviator-round">-</strong></p>
+          <p class="phase-line">Status: <strong id="aviator-phase">betting</strong></p>
+          <p class="phase-line">Countdown: <strong id="aviator-countdown">--</strong></p>
+          <p class="aviator-multiplier"><span id="aviator-multiplier">1.00x</span></p>
+          <canvas id="aviator-canvas" width="1200" height="420"></canvas>
+          <div id="aviator-flewaway" class="flewaway-overlay" style="display:none">
+            <p>FLEW AWAY!</p>
+            <strong id="aviator-flewaway-mult">1.00x</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel aviator-controls">
+        <div class="controls-top">
+          <button type="button" class="mini-btn">AUTO</button>
+          <button type="button" class="mini-btn">CASH</button>
+          <input type="number" step="0.1" min="1.1" value="2.00" readonly />
+        </div>
+        <div class="aviator-actions">
+          <form id="aviator-bet-form" class="stack">
+            <input id="aviator-stake" type="number" min="1" step="0.01" value="10" />
+            <button type="submit">Place Bet</button>
+          </form>
+          <button id="aviator-cashout-btn" type="button">Cash Out</button>
+        </div>
+      </section>
+
+      <section class="panel two-col">
+        <form id="mpesa-form" class="stack">
+          <h2>M-Pesa Deposit (STK Push)</h2>
+          <input id="mpesa-phone" type="tel" placeholder="2547XXXXXXXX" required />
+          <input id="mpesa-amount" type="number" min="1" step="1" placeholder="Amount (KES)" required />
+          <button type="submit">Initiate Real Money STK</button>
+          <small>You will be prompted on your phone to enter your M-Pesa PIN.</small>
+        </form>
+
+        <form id="withdraw-form" class="stack">
+          <h2>Withdraw</h2>
+          <input id="withdraw-amount" type="number" min="1" step="0.01" placeholder="Amount" required />
+          <button type="submit">Withdraw</button>
+        </form>
+      </section>
+
+      <section class="panel" style="display:none">
+        <div id="aviator-odds-current">1.00x</div>
+        <div id="aviator-last-crash">-</div>
+      </section>
+
+      <section class="panel">
+        <h3>Recent Crash Points</h3>
+        <div id="aviator-history" class="stack"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Available Matches & Odds</h2>
+        <div id="events" class="stack"></div>
+      </section>
+
+      <section class="panel two-col">
+        <div>
+          <h2>Bet Slip / My Bets</h2>
+          <div id="bets" class="stack"></div>
+        </div>
+        <div>
+          <h2>Wallet Transactions</h2>
+          <div id="transactions" class="stack"></div>
+        </div>
+      </section>
+
+      <nav class="mobile-bottom-nav">
+        <button type="button">Game</button>
+        <button type="button">Bets</button>
+        <button type="button">Wallet</button>
+        <button type="button">Menu</button>
+      </nav>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <script src="/dashboard.js"></script>
+  </body>
+</html>

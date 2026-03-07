@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetPesa Login</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-card">
+        <h1>Login To Your Account</h1>
+        <p>Enter phone, username, or email and password to continue.</p>
+
+        <form id="login-form" class="stack">
+          <label for="phone">Phone / Username / Email</label>
+          <input id="phone" type="text" placeholder="0702..., admin.dolazetu.com, or email" required />
+
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter password" required />
+
+          <button type="submit">Login</button>
+        </form>
+
+        <div class="auth-links">
+          <button id="forgot-btn" type="button" class="link-btn">Forgot Password</button>
+          <button id="show-register-btn" type="button" class="link-btn">Register</button>
+        </div>
+
+        <form id="register-form" class="stack hidden mt">
+          <h2>Create Account</h2>
+          <input id="reg-username" placeholder="Username" required />
+          <input id="reg-fullname" placeholder="Full name" />
+          <input id="reg-email" type="email" placeholder="Email" required />
+          <input id="reg-phone" type="tel" placeholder="Phone e.g. 254712345678" required />
+          <input id="reg-password" type="password" placeholder="Password (8+ chars)" required />
+          <input id="reg-dob" type="date" required />
+          <button type="submit">Register</button>
+        </form>
+
+        <p id="status" class="status"></p>
+      </section>
+    </main>
+
+    <script src="/login.js?v=2"></script>
+  </body>
+</html>
