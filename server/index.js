@@ -15,7 +15,7 @@ function envNumber(name, fallback) {
 }
 
 const PORT = envNumber('PORT', 3000);
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
@@ -44,6 +44,8 @@ class ApiError extends Error {
 let repo;
 let sessionStore;
 let rateLimitStore;
+let bootReady = false;
+let bootError = null;
 
 const AVIATOR_BETTING_MS = envNumber('AVIATOR_BETTING_MS', 10000);
 const AVIATOR_ROUND_GAP_MS = envNumber('AVIATOR_ROUND_GAP_MS', 6000);
@@ -1352,20 +1354,8 @@ async function ensureSystemUsers() {
 }
 
 async function bootstrap() {
-  repo = await createStorage();
-  await ensureSystemUsers();
-  const redis = await createRedisClient();
-
-  if (redis) {
-    sessionStore = new RedisSessionStore(redis);
-    rateLimitStore = new RedisRateLimitStore(redis);
-  } else {
-    sessionStore = new MemorySessionStore();
-    rateLimitStore = new MemoryRateLimitStore();
-  }
-
-  startAviatorRound();
-  startSignalGenerator();
+  sessionStore = new MemorySessionStore();
+  rateLimitStore = new MemoryRateLimitStore();
 
   const server = http.createServer(async (req, res) => {
     if (req.method === 'OPTIONS') {
@@ -1380,7 +1370,18 @@ async function bootstrap() {
 
     try {
       const urlObj = new URL(req.url, `http://${req.headers.host}`);
+      if (urlObj.pathname === '/api/health') {
+        return json(res, 200, {
+          ok: true,
+          ready: bootReady,
+          error: bootError ? String(bootError.message || bootError) : null
+        });
+      }
+
       if (urlObj.pathname.startsWith('/api/')) {
+        if (!bootReady) {
+          return json(res, 503, { error: 'Server booting, try again in a few seconds' });
+        }
         await handleApi(req, res, urlObj);
         return;
       }
@@ -1413,6 +1414,26 @@ async function bootstrap() {
     const cache = REDIS_URL ? 'redis-preferred' : 'memory';
     console.log(`BetPesa API running on http://${HOST}:${PORT} | storage=${mode} | cache=${cache}`);
   });
+
+  // Keep the HTTP port open quickly (for Render health detection), then initialize dependencies.
+  try {
+    repo = await createStorage();
+    await ensureSystemUsers();
+    const redis = await createRedisClient();
+
+    if (redis) {
+      sessionStore = new RedisSessionStore(redis);
+      rateLimitStore = new RedisRateLimitStore(redis);
+    }
+
+    startAviatorRound();
+    startSignalGenerator();
+    bootReady = true;
+    console.log('BetPesa bootstrap complete');
+  } catch (error) {
+    bootError = error;
+    console.error('Bootstrap dependency init failed:', error);
+  }
 }
 
 bootstrap().catch((error) => {
