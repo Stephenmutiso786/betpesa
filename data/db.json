@@ -203,8 +203,8 @@
     },
     {
       "userId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
-      "jti": "7133efc3-fc23-4fa6-af48-92b0f8726a9e",
-      "expiresAt": "2026-03-14T20:25:26.514Z",
+      "jti": "ba52b60f-649d-46b6-a562-04f2278a4983",
+      "expiresAt": "2026-03-14T22:57:27.346Z",
       "ipAddress": "127.0.0.1",
       "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
     }
@@ -1990,7 +1990,251 @@
         "ip": "127.0.0.1"
       },
       "createdAt": "2026-03-07T20:25:26.515Z"
+    },
+    {
+      "id": "c29ba296-7b59-40e8-874d-5bfadcde858e",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "signal_create",
+      "entityType": "signal",
+      "entityId": "f92d5352-f984-487b-a4c4-4afcd0971fe2",
+      "metadata": {
+        "game": "Arsenal vs Chelsea",
+        "odds": 1.03
+      },
+      "createdAt": "2026-03-07T22:57:12.193Z"
+    },
+    {
+      "id": "13141b51-7f11-400c-9b64-ca76a6e91703",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "7133efc3-fc23-4fa6-af48-92b0f8726a9e",
+      "metadata": null,
+      "createdAt": "2026-03-07T22:57:24.514Z"
+    },
+    {
+      "id": "a35698a9-8eb7-479f-a7b7-56dbede75cc4",
+      "actorType": "user",
+      "actorId": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T22:57:27.356Z"
+    },
+    {
+      "id": "c75f0996-69ac-4a0a-8e08-91ab102f14c6",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T22:57:42.420Z"
+    },
+    {
+      "id": "3a32ed3d-458f-401b-a807-35b82c344c07",
+      "actorType": "admin",
+      "actorId": null,
+      "action": "event_update",
+      "entityType": "event",
+      "entityId": "evt_001",
+      "metadata": {
+        "markets": {
+          "homeWin": 1.95,
+          "draw": 3.4,
+          "awayWin": 4.1
+        }
+      },
+      "createdAt": "2026-03-07T22:58:03.743Z"
+    },
+    {
+      "id": "906e1830-441c-4300-9e85-366583939548",
+      "actorType": "admin",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "signal_status_update",
+      "entityType": "signal",
+      "entityId": "f92d5352-f984-487b-a4c4-4afcd0971fe2",
+      "metadata": {
+        "status": "approved"
+      },
+      "createdAt": "2026-03-07T22:58:27.587Z"
+    },
+    {
+      "id": "037bd8d8-269a-4110-a04b-1900c80e96c6",
+      "actorType": "admin",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "user_role_update",
+      "entityType": "user",
+      "entityId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "metadata": {
+        "role": "super_admin"
+      },
+      "createdAt": "2026-03-07T22:58:34.463Z"
+    },
+    {
+      "id": "7a64a1e5-97d9-443d-9c28-2a0b2f3e2c9c",
+      "actorType": "user",
+      "actorId": "860f8528-f494-4980-8f58-55cbca0d7126",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "7d0f5b17-8d0c-41be-ada5-11de96ec2cd4",
+      "metadata": null,
+      "createdAt": "2026-03-07T22:58:57.987Z"
+    },
+    {
+      "id": "2ed77099-1b4c-43e1-807d-3a735aab93dd",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-07T22:59:03.098Z"
+    },
+    {
+      "id": "a96c30bd-5cfd-4f04-9de1-9e790fe5bc27",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "3ba3ce08-9066-4611-afb4-8dd99bf851d1",
+      "metadata": null,
+      "createdAt": "2026-03-08T16:22:29.139Z"
+    },
+    {
+      "id": "aaa69825-1bdc-460d-92af-11552a24a5c2",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-08T16:22:32.177Z"
+    },
+    {
+      "id": "a40ee815-c7b5-4de9-82d6-a631187a46f2",
+      "actorType": "user",
+      "actorId": "9706448c-0845-4166-a136-cb6afdb43df3",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "33941c1b-313f-412e-afc1-f36b5d520e07",
+      "metadata": null,
+      "createdAt": "2026-03-08T16:22:34.793Z"
+    },
+    {
+      "id": "4c045313-c6d7-4d00-a258-4d76960e5329",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-08T16:22:41.923Z"
+    },
+    {
+      "id": "6ff8fc07-19a3-4970-8aed-24ed1fedbac0",
+      "actorType": "user",
+      "actorId": "e53fcf08-8efd-424a-ad0c-beb645eee269",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "cf34cc77-9148-4c42-8d7e-4c6f21e2a39f",
+      "metadata": null,
+      "createdAt": "2026-03-08T16:22:44.322Z"
+    },
+    {
+      "id": "fab49683-d1bb-4acc-b400-cf993cc7dcae",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "login",
+      "entityType": "session",
+      "entityId": null,
+      "metadata": {
+        "ip": "127.0.0.1"
+      },
+      "createdAt": "2026-03-08T16:22:50.946Z"
+    },
+    {
+      "id": "c6db5e16-3217-459a-9cc3-edae4da9c11c",
+      "actorType": "user",
+      "actorId": "9e4f02d7-40f9-43d7-80dc-ee022c26155c",
+      "action": "logout",
+      "entityType": "session",
+      "entityId": "9fdb44a8-fd94-4fde-a676-5074aebdfcd6",
+      "metadata": null,
+      "createdAt": "2026-03-08T16:22:56.853Z"
     }
   ],
-  "signals": []
+  "signals": [
+    {
+      "id": "f92d5352-f984-487b-a4c4-4afcd0971fe2",
+      "game": "Arsenal vs Chelsea",
+      "prediction": "over 2.5 Goals",
+      "odds": 1.03,
+      "confidence": "medium",
+      "startsAt": "2026-11-03T11:22:00.000Z",
+      "createdBy": "96ec6e6e-3497-4801-916e-fadf07e1e5c1",
+      "status": "approved",
+      "createdAt": "2026-03-07T22:57:12.181Z",
+      "updatedAt": "2026-03-07T22:58:27.564Z"
+    }
+  ],
+  "adminSettings": {
+    "branding": {
+      "appName": "BETPESA",
+      "domain": "betpesa-site.onrender.com",
+      "watermarkText": "Betpesa.com",
+      "primaryColor": "#23c96d",
+      "logoUrl": ""
+    },
+    "paymentConfig": {
+      "mpesaPaybill": "174379",
+      "mpesaOwnerEmail": "admin@betpesa.com",
+      "mpesaCallbackUrl": ""
+    },
+    "gameConfig": {
+      "minMultiplier": 1.01,
+      "maxMultiplier": 70
+    },
+    "crashWeights": [
+      {
+        "min": 1,
+        "max": 10,
+        "weight": 12
+      },
+      {
+        "min": 10,
+        "max": 20,
+        "weight": 25
+      },
+      {
+        "min": 20,
+        "max": 40,
+        "weight": 18
+      },
+      {
+        "min": 40,
+        "max": 80,
+        "weight": 50
+      }
+    ],
+    "realMoneyControl": {
+      "enabled": false,
+      "forcedRangeMin": 1.05,
+      "forcedRangeMax": 1.12
+    },
+    "updatedAt": "2026-03-09T15:57:59.022Z"
+  }
 }

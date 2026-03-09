@@ -33,6 +33,13 @@ class PostgresRepo {
         updated_at timestamptz not null default now()
       )
     `);
+    await this.pool.query(`
+      create table if not exists admin_settings (
+        key text primary key,
+        value jsonb not null,
+        updated_at timestamptz not null default now()
+      )
+    `);
   }
 
   async close() {
@@ -818,6 +825,28 @@ class PostgresRepo {
     );
     if (!rows[0]) return null;
     return { ...rows[0], odds: Number(rows[0].odds) };
+  }
+
+  async getAdminSettings() {
+    const { rows } = await this.pool.query(
+      `select value
+       from admin_settings
+       where key = 'global'
+       limit 1`
+    );
+    return rows[0]?.value || null;
+  }
+
+  async updateAdminSettings(settings) {
+    const { rows } = await this.pool.query(
+      `insert into admin_settings (key, value, updated_at)
+       values ('global', $1::jsonb, now())
+       on conflict (key)
+       do update set value = excluded.value, updated_at = now()
+       returning value`,
+      [JSON.stringify(settings)]
+    );
+    return rows[0]?.value || settings;
   }
 
   async addAudit(log) {

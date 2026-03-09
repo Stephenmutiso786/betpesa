@@ -26,7 +26,8 @@ function ensureFile() {
           bets: [],
           transactions: [],
           auditLogs: [],
-          signals: []
+          signals: [],
+          adminSettings: null
         },
         null,
         2
@@ -45,6 +46,7 @@ function readDb() {
   db.transactions ||= [];
   db.auditLogs ||= [];
   db.signals ||= [];
+  db.adminSettings ||= null;
   return db;
 }
 
@@ -78,6 +80,7 @@ class JsonRepo {
         }
       );
     }
+    db.adminSettings ||= null;
     writeDb(db);
   }
 
@@ -412,6 +415,18 @@ class JsonRepo {
     Object.assign(signal, patch, { updatedAt: nowIso() });
     writeDb(db);
     return signal;
+  }
+
+  async getAdminSettings() {
+    const db = readDb();
+    return db.adminSettings || null;
+  }
+
+  async updateAdminSettings(settings) {
+    const db = readDb();
+    db.adminSettings = settings;
+    writeDb(db);
+    return db.adminSettings;
   }
 
   async addAudit(log) {
