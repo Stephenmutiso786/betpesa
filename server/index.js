@@ -52,6 +52,37 @@ const AVIATOR_ROUND_GAP_MS = envNumber('AVIATOR_ROUND_GAP_MS', 6000);
 const AVIATOR_TICK_MS = envNumber('AVIATOR_TICK_MS', 200);
 const AVIATOR_MAX_BET = envNumber('AVIATOR_MAX_BET', 5000);
 
+const DEFAULT_ADMIN_SETTINGS = {
+  branding: {
+    appName: 'BETPESA',
+    domain: 'betpesa-site.onrender.com',
+    watermarkText: 'Betpesa.com',
+    primaryColor: '#23c96d',
+    logoUrl: ''
+  },
+  paymentConfig: {
+    mpesaPaybill: MPESA_SHORTCODE || '174379',
+    mpesaOwnerEmail: 'admin@betpesa.com',
+    mpesaCallbackUrl: MPESA_CALLBACK_URL || ''
+  },
+  gameConfig: {
+    minMultiplier: 1.01,
+    maxMultiplier: 70
+  },
+  crashWeights: [
+    { min: 1.0, max: 10, weight: 12 },
+    { min: 10, max: 20, weight: 25 },
+    { min: 20, max: 40, weight: 18 },
+    { min: 40, max: 80, weight: 50 }
+  ],
+  realMoneyControl: {
+    enabled: false,
+    forcedRangeMin: 1.05,
+    forcedRangeMax: 1.12
+  },
+  updatedAt: nowIso()
+};
+
 const aviator = {
   roundId: null,
   phase: 'betting',
@@ -69,6 +100,7 @@ const aviator = {
   signalQueue: [],
   nextSignalAt: null
 };
+let adminSettings = { ...DEFAULT_ADMIN_SETTINGS };
 
 const mpesaState = {
   token: null,
@@ -88,10 +120,80 @@ function roundMultiplier(value) {
   return Number(Number(value).toFixed(2));
 }
 
+function boundedNumber(value, min, max, fallback) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(max, Math.max(min, n));
+}
+
+function normalizeAdminSettings(input = {}) {
+  const merged = {
+    branding: { ...DEFAULT_ADMIN_SETTINGS.branding, ...(input.branding || {}) },
+    paymentConfig: { ...DEFAULT_ADMIN_SETTINGS.paymentConfig, ...(input.paymentConfig || {}) },
+    gameConfig: { ...DEFAULT_ADMIN_SETTINGS.gameConfig, ...(input.gameConfig || {}) },
+    crashWeights: Array.isArray(input.crashWeights) ? input.crashWeights : DEFAULT_ADMIN_SETTINGS.crashWeights,
+    realMoneyControl: { ...DEFAULT_ADMIN_SETTINGS.realMoneyControl, ...(input.realMoneyControl || {}) },
+    updatedAt: nowIso()
+  };
+
+  merged.gameConfig.minMultiplier = boundedNumber(merged.gameConfig.minMultiplier, 1.01, 200, 1.01);
+  merged.gameConfig.maxMultiplier = boundedNumber(
+    merged.gameConfig.maxMultiplier,
+    merged.gameConfig.minMultiplier + 0.01,
+    500,
+    70
+  );
+
+  merged.crashWeights = merged.crashWeights
+    .map((r) => ({
+      min: boundedNumber(r.min, 1.0, 500, 1.0),
+      max: boundedNumber(r.max, 1.01, 500, 10),
+      weight: boundedNumber(r.weight, 1, 1000, 10)
+    }))
+    .filter((r) => r.max > r.min);
+  if (!merged.crashWeights.length) merged.crashWeights = [...DEFAULT_ADMIN_SETTINGS.crashWeights];
+
+  merged.realMoneyControl.enabled = !!merged.realMoneyControl.enabled;
+  merged.realMoneyControl.forcedRangeMin = boundedNumber(merged.realMoneyControl.forcedRangeMin, 1.01, 50, 1.05);
+  merged.realMoneyControl.forcedRangeMax = boundedNumber(
+    merged.realMoneyControl.forcedRangeMax,
+    merged.realMoneyControl.forcedRangeMin + 0.01,
+    80,
+    1.12
+  );
+
+  return merged;
+}
+
+function weightedCrashPoint() {
+  const ranges = adminSettings?.crashWeights || DEFAULT_ADMIN_SETTINGS.crashWeights;
+  const total = ranges.reduce((sum, r) => sum + Number(r.weight || 0), 0) || 1;
+  let pick = Math.random() * total;
+  let chosen = ranges[ranges.length - 1];
+  for (const r of ranges) {
+    pick -= Number(r.weight || 0);
+    if (pick <= 0) {
+      chosen = r;
+      break;
+    }
+  }
+  const min = boundedNumber(chosen.min, 1.01, 500, 1.01);
+  const max = boundedNumber(chosen.max, min + 0.01, 500, 10);
+  return min + Math.random() * (max - min);
+}
+
 function randomCrashPoint() {
-  const r = Math.random();
-  const weighted = 1 + Math.pow(r, 2.6) * 11;
-  return roundMultiplier(Math.max(1.01, weighted));
+  const g = adminSettings?.gameConfig || DEFAULT_ADMIN_SETTINGS.gameConfig;
+  const control = adminSettings?.realMoneyControl || DEFAULT_ADMIN_SETTINGS.realMoneyControl;
+
+  if (control.enabled) {
+    const forced = control.forcedRangeMin + Math.random() * (control.forcedRangeMax - control.forcedRangeMin);
+    return roundMultiplier(forced);
+  }
+
+  const weighted = weightedCrashPoint();
+  const clipped = boundedNumber(weighted, g.minMultiplier || 1.01, g.maxMultiplier || 70, 2.0);
+  return roundMultiplier(Math.max(1.01, clipped));
 }
 
 function randomSignalValue(hasBets) {
@@ -1122,6 +1224,27 @@ async function handleApi(req, res, urlObj) {
     });
   }
 
+  if (req.method === 'GET' && pathname === '/api/admin/settings') {
+    const sessionUser = await getSessionUser(req);
+    if (!sessionUser) throw new ApiError(401, 'Unauthorized');
+    if (!isAdminUser(sessionUser.user)) throw new ApiError(403, 'Forbidden');
+    return json(res, 200, { settings: adminSettings });
+  }
+
+  if (req.method === 'POST' && pathname === '/api/admin/settings') {
+    const sessionUser = await getSessionUser(req);
+    if (!sessionUser) throw new ApiError(401, 'Unauthorized');
+    if (!isAdminUser(sessionUser.user)) throw new ApiError(403, 'Forbidden');
+    const body = await parseBody(req);
+    const next = normalizeAdminSettings(body || {});
+    adminSettings = next;
+    await repo.updateAdminSettings(next);
+    await addAudit('admin', sessionUser.user.id, 'admin_settings_update', 'settings', 'admin', {
+      updatedAt: next.updatedAt
+    });
+    return json(res, 200, { settings: adminSettings });
+  }
+
   if (req.method === 'POST' && pathname === '/api/admin/kyc') {
     const sessionUser = await getSessionUser(req);
     if (!sessionUser || !isAdminUser(sessionUser.user)) throw new ApiError(403, 'Admin access required');
@@ -1418,6 +1541,8 @@ async function bootstrap() {
   // Keep the HTTP port open quickly (for Render health detection), then initialize dependencies.
   try {
     repo = await createStorage();
+    adminSettings = normalizeAdminSettings((await repo.getAdminSettings()) || DEFAULT_ADMIN_SETTINGS);
+    await repo.updateAdminSettings(adminSettings);
     await ensureSystemUsers();
     const redis = await createRedisClient();
 

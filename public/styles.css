@@ -811,6 +811,40 @@ button:disabled {
 .tx-pos { color: #35e58a; font-weight: 700; }
 .tx-neg { color: #ff6078; font-weight: 700; }
 
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.settings-grid label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.settings-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.weight-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 28px minmax(0, 1fr) 52px minmax(0, 1fr) 84px;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.weight-row .danger {
+  background: #351521;
+  border: 1px solid #7f2d45;
+  color: #ff8ba2;
+  padding: 0.4rem;
+}
+
 .signal-live-shell {
   min-height: 100dvh;
   background: radial-gradient(circle at center top, #111930 0%, #05080f 62%, #04060c 100%);
@@ -1032,6 +1066,20 @@ button:disabled {
 
   .kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weight-row {
+    grid-template-columns: 40px 1fr 24px 1fr;
+  }
+
+  .weight-row span:nth-of-type(2),
+  .weight-row input[data-k='weight'],
+  .weight-row .danger {
+    grid-column: span 2;
   }
 
   .admin-odds-stage {

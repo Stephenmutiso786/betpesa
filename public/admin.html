@@ -22,7 +22,7 @@
           <a href="#admin-aviator">Game Feed</a>
           <a href="#odds-form">Markets</a>
           <a href="#signal-approve-form">Signal Tool</a>
-          <a href="#role-form">Settings</a>
+          <a href="#admin-settings-section">Settings</a>
         </nav>
       </aside>
 
@@ -159,6 +159,50 @@
             </select>
             <button type="submit">Apply Status</button>
           </form>
+        </section>
+
+        <section class="panel" id="admin-settings-section">
+          <h2>Settings</h2>
+          <div class="settings-grid">
+            <form id="settings-branding-form" class="stack item">
+              <h3>Branding</h3>
+              <label>Application Name<input id="set-app-name" required /></label>
+              <label>Domain<input id="set-domain" required /></label>
+              <label>Watermark Text<input id="set-watermark" required /></label>
+              <label>Primary Color<input id="set-primary-color" type="color" /></label>
+              <label>Logo URL<input id="set-logo-url" placeholder="https://..." /></label>
+            </form>
+
+            <form id="settings-payment-form" class="stack item">
+              <h3>Payment Configuration</h3>
+              <label>M-Pesa Paybill<input id="set-mpesa-paybill" /></label>
+              <label>M-Pesa Owner Email<input id="set-mpesa-email" type="email" /></label>
+              <label>M-Pesa Callback URL<input id="set-mpesa-callback" /></label>
+            </form>
+
+            <form id="settings-game-form" class="stack item">
+              <h3>Game Configuration</h3>
+              <label>Minimum Multiplier<input id="set-min-multiplier" type="number" step="0.01" min="1.01" /></label>
+              <label>Maximum Multiplier<input id="set-max-multiplier" type="number" step="0.01" min="1.02" /></label>
+            </form>
+
+            <form id="settings-realmoney-form" class="stack item">
+              <h3>Real-Money Crash Control</h3>
+              <label><input id="set-force-enabled" type="checkbox" /> Enable forced crash range</label>
+              <label>Forced Min<input id="set-force-min" type="number" step="0.01" min="1.01" /></label>
+              <label>Forced Max<input id="set-force-max" type="number" step="0.01" min="1.02" /></label>
+            </form>
+          </div>
+
+          <div class="item">
+            <div class="settings-head-row">
+              <h3>Crash Range Weights</h3>
+              <button id="set-add-range-btn" type="button">+ Add Range</button>
+            </div>
+            <div id="set-crash-weights" class="stack"></div>
+          </div>
+
+          <button id="set-save-btn" type="button">Save Changes</button>
         </section>
 
         <section class="panel">

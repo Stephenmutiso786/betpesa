@@ -27,17 +27,177 @@ const roleUserEl = document.getElementById('role-user');
 const roleValueEl = document.getElementById('role-value');
 const adminSignalEl = document.getElementById('admin-signal');
 const periodButtons = Array.from(document.querySelectorAll('.period-tabs [data-period]'));
+const setAppNameEl = document.getElementById('set-app-name');
+const setDomainEl = document.getElementById('set-domain');
+const setWatermarkEl = document.getElementById('set-watermark');
+const setPrimaryColorEl = document.getElementById('set-primary-color');
+const setLogoUrlEl = document.getElementById('set-logo-url');
+const setMpesaPaybillEl = document.getElementById('set-mpesa-paybill');
+const setMpesaEmailEl = document.getElementById('set-mpesa-email');
+const setMpesaCallbackEl = document.getElementById('set-mpesa-callback');
+const setMinMultiplierEl = document.getElementById('set-min-multiplier');
+const setMaxMultiplierEl = document.getElementById('set-max-multiplier');
+const setForceEnabledEl = document.getElementById('set-force-enabled');
+const setForceMinEl = document.getElementById('set-force-min');
+const setForceMaxEl = document.getElementById('set-force-max');
+const setCrashWeightsEl = document.getElementById('set-crash-weights');
+const setAddRangeBtn = document.getElementById('set-add-range-btn');
+const setSaveBtn = document.getElementById('set-save-btn');
 
 let refreshTimer = null;
 let adminAviatorState = null;
 let overviewSnapshot = null;
 let activePeriod = 'all';
+let settingsState = null;
 
 function setBusy(el, busy, busyText = 'Processing...') {
   if (!el) return;
   if (!el.dataset.idleText) el.dataset.idleText = el.textContent || '';
   el.disabled = !!busy;
   el.textContent = busy ? busyText : el.dataset.idleText;
+}
+
+function defaultSettings() {
+  return {
+    branding: {
+      appName: 'BETPESA',
+      domain: 'betpesa-site.onrender.com',
+      watermarkText: 'Betpesa.com',
+      primaryColor: '#23c96d',
+      logoUrl: ''
+    },
+    paymentConfig: {
+      mpesaPaybill: '174379',
+      mpesaOwnerEmail: 'admin@betpesa.com',
+      mpesaCallbackUrl: ''
+    },
+    gameConfig: {
+      minMultiplier: 1.01,
+      maxMultiplier: 70
+    },
+    crashWeights: [
+      { min: 1.0, max: 10, weight: 12 },
+      { min: 10, max: 20, weight: 25 },
+      { min: 20, max: 40, weight: 18 },
+      { min: 40, max: 80, weight: 50 }
+    ],
+    realMoneyControl: {
+      enabled: false,
+      forcedRangeMin: 1.05,
+      forcedRangeMax: 1.12
+    }
+  };
+}
+
+function normalizeSettingsInput(raw = {}) {
+  const base = defaultSettings();
+  const merged = {
+    branding: { ...base.branding, ...(raw.branding || {}) },
+    paymentConfig: { ...base.paymentConfig, ...(raw.paymentConfig || {}) },
+    gameConfig: { ...base.gameConfig, ...(raw.gameConfig || {}) },
+    crashWeights: Array.isArray(raw.crashWeights) ? raw.crashWeights : base.crashWeights,
+    realMoneyControl: { ...base.realMoneyControl, ...(raw.realMoneyControl || {}) }
+  };
+  merged.crashWeights = merged.crashWeights.filter((r) => Number(r.max) > Number(r.min));
+  if (!merged.crashWeights.length) merged.crashWeights = base.crashWeights;
+  return merged;
+}
+
+function validateSettings(settings) {
+  if (!settings.branding.appName) throw new Error('Application Name is required');
+  if (!settings.branding.domain) throw new Error('Domain is required');
+  if (Number(settings.gameConfig.minMultiplier) >= Number(settings.gameConfig.maxMultiplier)) {
+    throw new Error('Minimum multiplier must be less than maximum multiplier');
+  }
+  if (settings.realMoneyControl.enabled) {
+    if (Number(settings.realMoneyControl.forcedRangeMin) >= Number(settings.realMoneyControl.forcedRangeMax)) {
+      throw new Error('Forced crash min must be less than forced crash max');
+    }
+  }
+  settings.crashWeights.forEach((row, idx) => {
+    if (!Number.isFinite(Number(row.min)) || !Number.isFinite(Number(row.max)) || !Number.isFinite(Number(row.weight))) {
+      throw new Error(`Crash weight row #${idx + 1} has invalid numbers`);
+    }
+    if (Number(row.min) >= Number(row.max)) {
+      throw new Error(`Crash weight row #${idx + 1} min must be less than max`);
+    }
+    if (Number(row.weight) <= 0) {
+      throw new Error(`Crash weight row #${idx + 1} weight must be above 0`);
+    }
+  });
+}
+
+function renderCrashWeightRows() {
+  setCrashWeightsEl.innerHTML = '';
+  settingsState.crashWeights.forEach((row, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'weight-row';
+    wrap.innerHTML = `
+      <small>#${idx + 1}</small>
+      <input type="number" step="0.01" min="1" value="${Number(row.min)}" data-k="min" data-i="${idx}" />
+      <span>to</span>
+      <input type="number" step="0.01" min="1.01" value="${Number(row.max)}" data-k="max" data-i="${idx}" />
+      <span>Weight</span>
+      <input type="number" step="1" min="1" value="${Number(row.weight)}" data-k="weight" data-i="${idx}" />
+      <button type="button" class="danger" data-remove-range="${idx}">Remove</button>
+    `;
+    setCrashWeightsEl.appendChild(wrap);
+  });
+}
+
+function paintSettingsForm() {
+  const s = settingsState;
+  setAppNameEl.value = s.branding.appName || '';
+  setDomainEl.value = s.branding.domain || '';
+  setWatermarkEl.value = s.branding.watermarkText || '';
+  setPrimaryColorEl.value = s.branding.primaryColor || '#23c96d';
+  setLogoUrlEl.value = s.branding.logoUrl || '';
+
+  setMpesaPaybillEl.value = s.paymentConfig.mpesaPaybill || '';
+  setMpesaEmailEl.value = s.paymentConfig.mpesaOwnerEmail || '';
+  setMpesaCallbackEl.value = s.paymentConfig.mpesaCallbackUrl || '';
+
+  setMinMultiplierEl.value = Number(s.gameConfig.minMultiplier || 1.01).toFixed(2);
+  setMaxMultiplierEl.value = Number(s.gameConfig.maxMultiplier || 70).toFixed(2);
+
+  setForceEnabledEl.checked = !!s.realMoneyControl.enabled;
+  setForceMinEl.value = Number(s.realMoneyControl.forcedRangeMin || 1.05).toFixed(2);
+  setForceMaxEl.value = Number(s.realMoneyControl.forcedRangeMax || 1.12).toFixed(2);
+
+  renderCrashWeightRows();
+}
+
+function collectSettingsFromForm() {
+  return normalizeSettingsInput({
+    branding: {
+      appName: setAppNameEl.value.trim(),
+      domain: setDomainEl.value.trim(),
+      watermarkText: setWatermarkEl.value.trim(),
+      primaryColor: setPrimaryColorEl.value,
+      logoUrl: setLogoUrlEl.value.trim()
+    },
+    paymentConfig: {
+      mpesaPaybill: setMpesaPaybillEl.value.trim(),
+      mpesaOwnerEmail: setMpesaEmailEl.value.trim(),
+      mpesaCallbackUrl: setMpesaCallbackEl.value.trim()
+    },
+    gameConfig: {
+      minMultiplier: Number(setMinMultiplierEl.value || 1.01),
+      maxMultiplier: Number(setMaxMultiplierEl.value || 70)
+    },
+    crashWeights: settingsState.crashWeights,
+    realMoneyControl: {
+      enabled: setForceEnabledEl.checked,
+      forcedRangeMin: Number(setForceMinEl.value || 1.05),
+      forcedRangeMax: Number(setForceMaxEl.value || 1.12)
+    }
+  });
+}
+
+async function loadAdminSettings() {
+  const data = await api('/admin/settings');
+  settingsState = normalizeSettingsInput(data.settings || {});
+  paintSettingsForm();
 }
 
 function phaseLabel(phase) {
@@ -386,6 +546,46 @@ document.getElementById('admin-logout-btn').addEventListener('click', async () =
   window.location.replace('/login');
 });
 
+setAddRangeBtn.addEventListener('click', () => {
+  settingsState.crashWeights.push({ min: 1.0, max: 10, weight: 10 });
+  renderCrashWeightRows();
+});
+
+setCrashWeightsEl.addEventListener('input', (e) => {
+  const i = Number(e.target.dataset.i);
+  const key = e.target.dataset.k;
+  if (!Number.isInteger(i) || !key || !settingsState.crashWeights[i]) return;
+  settingsState.crashWeights[i][key] = Number(e.target.value || 0);
+});
+
+setCrashWeightsEl.addEventListener('click', (e) => {
+  const idx = Number(e.target.dataset.removeRange);
+  if (!Number.isInteger(idx)) return;
+  settingsState.crashWeights.splice(idx, 1);
+  if (!settingsState.crashWeights.length) settingsState.crashWeights.push({ min: 1.0, max: 10, weight: 10 });
+  renderCrashWeightRows();
+});
+
+setSaveBtn.addEventListener('click', async () => {
+  if (setSaveBtn.disabled) return;
+  try {
+    setBusy(setSaveBtn, true, 'Saving...');
+    settingsState = collectSettingsFromForm();
+    validateSettings(settingsState);
+    const data = await api('/admin/settings', {
+      method: 'POST',
+      body: JSON.stringify(settingsState)
+    });
+    settingsState = normalizeSettingsInput(data.settings || settingsState);
+    paintSettingsForm();
+    setStatus('Settings saved and applied');
+  } catch (err) {
+    setStatus(`Failed to save settings: ${err.message}`, true);
+  } finally {
+    setBusy(setSaveBtn, false);
+  }
+});
+
 (async function init() {
   try {
     const admin = await ensureAdmin();
@@ -393,7 +593,23 @@ document.getElementById('admin-logout-btn').addEventListener('click', async () =
     await loadEvents();
     await loadUsers();
     await loadSignalsAdmin();
+    await loadAdminSettings();
     await loadLive();
+    document.querySelectorAll('#admin-settings-section form').forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        setSaveBtn.click();
+      });
+    });
+    document.querySelectorAll('.portal-nav a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
     periodButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
         activePeriod = btn.dataset.period || 'all';

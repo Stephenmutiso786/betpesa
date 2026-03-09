@@ -264,26 +264,26 @@ function drawAviator() {
   const h = aviatorCanvas.height;
 
   ctx.clearRect(0, 0, w, h);
-  const grd = ctx.createRadialGradient(w * 0.5, h * 0.55, 10, w * 0.5, h * 0.55, h * 0.8);
-  grd.addColorStop(0, '#1f2235');
-  grd.addColorStop(0.45, '#111625');
-  grd.addColorStop(1, '#090b11');
-  ctx.fillStyle = grd;
+  const grd = ctx.createLinearGradient(0, 0, w, h);
+  grd.addColorStop(0, '#111827');
+  grd.addColorStop(0.45, '#0a101c');
+  grd.addColorStop(1, '#05080f');
   ctx.fillRect(0, 0, w, h);
 
-  const cx = w / 2;
-  const cy = h * 0.62;
-  ctx.save();
-  ctx.strokeStyle = 'rgba(255,255,255,0.045)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i < 28; i += 1) {
-    const a = (Math.PI * 2 * i) / 28;
+  // Draw spotlight rays from bottom-left to match classic aviator look.
+  const ox = -40;
+  const oy = h + 18;
+  for (let i = 0; i < 20; i += 1) {
+    const a1 = -1.55 + i * 0.12;
+    const a2 = a1 + 0.07;
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + Math.cos(a) * w, cy + Math.sin(a) * h);
-    ctx.stroke();
+    ctx.moveTo(ox, oy);
+    ctx.lineTo(ox + Math.cos(a1) * (w * 2), oy + Math.sin(a1) * (w * 2));
+    ctx.lineTo(ox + Math.cos(a2) * (w * 2), oy + Math.sin(a2) * (w * 2));
+    ctx.closePath();
+    ctx.fillStyle = i % 2 === 0 ? 'rgba(255,255,255,0.045)' : 'rgba(0,0,0,0.18)';
+    ctx.fill();
   }
-  ctx.restore();
 
   ctx.strokeStyle = '#2a2f47';
   ctx.lineWidth = 1;
@@ -310,8 +310,22 @@ function drawAviator() {
   }
 
   if (points.length > 1) {
-    ctx.strokeStyle = '#ff3f4f';
-    ctx.lineWidth = 4;
+    // Fill area below the curve for the classic aviator look.
+    ctx.save();
+    const fill = ctx.createLinearGradient(0, h, 0, h * 0.25);
+    fill.addColorStop(0, 'rgba(209, 12, 54, 0.52)');
+    fill.addColorStop(1, 'rgba(209, 12, 54, 0.08)');
+    ctx.fillStyle = fill;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, h - 2);
+    points.forEach((pt) => ctx.lineTo(pt.x, pt.y));
+    ctx.lineTo(points[points.length - 1].x, h - 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+
+    ctx.strokeStyle = '#ff214f';
+    ctx.lineWidth = 6;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i += 1) {
@@ -321,9 +335,9 @@ function drawAviator() {
 
     if (phase === 'flying') {
       ctx.save();
-      ctx.strokeStyle = 'rgba(255,95,109,0.35)';
-      ctx.setLineDash([6, 6]);
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(255,95,109,0.32)';
+      ctx.setLineDash([10, 6]);
+      ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
       for (let i = 1; i < points.length; i += 1) {
@@ -339,32 +353,85 @@ function drawAviator() {
     const prev = points[Math.max(0, points.length - 2)];
     const angle = Math.atan2(p.y - prev.y, p.x - prev.x);
 
-    // Draw stylized red aviator plane aligned to the curve.
+    // Draw a side-view red propeller plane silhouette.
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(angle);
 
-    ctx.fillStyle = '#ff3d4c';
-
+    // Subtle shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
     ctx.beginPath();
-    ctx.moveTo(14, 0);
-    ctx.lineTo(-5, -5);
-    ctx.lineTo(-2, 0);
-    ctx.lineTo(-5, 5);
+    ctx.ellipse(2, 7, 16, 4, 0.12, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#f30f44';
+    // Fuselage + tail
+    ctx.beginPath();
+    ctx.moveTo(22, 0);
+    ctx.lineTo(10, -4);
+    ctx.lineTo(-2, -4);
+    ctx.lineTo(-10, -8);
+    ctx.lineTo(-9, -2);
+    ctx.lineTo(-16, 0);
+    ctx.lineTo(-9, 2);
+    ctx.lineTo(-10, 8);
+    ctx.lineTo(-2, 4);
+    ctx.lineTo(10, 4);
     ctx.closePath();
     ctx.fill();
 
-    ctx.fillStyle = '#a90f20';
-    ctx.fillRect(-1, -2, 7, 4);
-
-    ctx.fillStyle = '#ff7682';
+    // Top wing
+    ctx.fillStyle = '#cf0c39';
     ctx.beginPath();
-    ctx.moveTo(-4, 0);
-    ctx.lineTo(-13, -7);
-    ctx.lineTo(-10, 0);
-    ctx.lineTo(-13, 7);
+    ctx.moveTo(8, -1);
+    ctx.lineTo(-3, -10);
+    ctx.lineTo(6, -6);
+    ctx.lineTo(13, -2);
     ctx.closePath();
     ctx.fill();
+
+    // Bottom wing
+    ctx.beginPath();
+    ctx.moveTo(8, 1);
+    ctx.lineTo(-3, 10);
+    ctx.lineTo(6, 6);
+    ctx.lineTo(13, 2);
+    ctx.closePath();
+    ctx.fill();
+
+    // Cockpit / X mark
+    ctx.fillStyle = '#820a24';
+    ctx.fillRect(4, -2, 4, 4);
+    ctx.strokeStyle = '#ff6e8c';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(9, -3);
+    ctx.lineTo(13, 1);
+    ctx.moveTo(13, -3);
+    ctx.lineTo(9, 1);
+    ctx.stroke();
+
+    // Tail fin
+    ctx.fillStyle = '#ff567a';
+    ctx.beginPath();
+    ctx.moveTo(-11, -2);
+    ctx.lineTo(-14, -9);
+    ctx.lineTo(-9, -5);
+    ctx.closePath();
+    ctx.fill();
+
+    // Propeller
+    ctx.strokeStyle = '#ff8ea7';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(22, 0, 4.3, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(22, -4.3);
+    ctx.lineTo(22, 4.3);
+    ctx.moveTo(17.7, 0);
+    ctx.lineTo(26.3, 0);
+    ctx.stroke();
 
     ctx.restore();
 
@@ -376,10 +443,7 @@ function drawAviator() {
     }
   }
 
-  ctx.fillStyle = '#c3d1df';
-  ctx.font = '14px sans-serif';
-  ctx.fillText(`Phase: ${phaseLabel(phase)}`, 20, 24);
-  ctx.fillText(`Multiplier: ${displayMultiplier.toFixed(2)}x`, 20, 44);
+  // Intentionally keep HUD clean (only center multiplier in page UI).
 
   aviatorFrame = requestAnimationFrame(drawAviator);
 }
