@@ -44,11 +44,15 @@
 
         <section class="panel admin-aviator-layout">
           <div class="aviator-screen admin-aviator-screen">
+            <div class="admin-odds-stage">
+              <p class="admin-odds-label" id="admin-odds-label">NEXT ROUND IN</p>
+              <p class="admin-odds-value" id="admin-odds-value">4</p>
+              <p class="admin-odds-meta">Betpesa.com</p>
+            </div>
             <p class="round-line">Round <strong id="admin-aviator-round">-</strong></p>
             <p class="phase-line">Status: <strong id="admin-aviator-phase">betting</strong></p>
             <p class="phase-line">Countdown: <strong id="admin-aviator-countdown">--</strong></p>
             <p class="aviator-multiplier"><span id="admin-aviator-multiplier">1.00x</span></p>
-            <canvas id="admin-aviator-canvas" width="1200" height="420"></canvas>
           </div>
           <aside class="signal-side admin-upcoming">
             <h3>Upcoming Games</h3>
@@ -72,11 +76,11 @@
 
         <section class="panel" id="admin-overview-wrap">
           <div class="period-tabs">
-            <button type="button">Today</button>
-            <button type="button">This Week</button>
-            <button type="button">This Month</button>
-            <button type="button" class="active">All Time</button>
-            <button type="button">Custom Range</button>
+            <button type="button" data-period="today">Today</button>
+            <button type="button" data-period="week">This Week</button>
+            <button type="button" data-period="month">This Month</button>
+            <button type="button" data-period="all" class="active">All Time</button>
+            <button type="button" data-period="custom">Custom Range</button>
           </div>
           <div id="admin-overview" class="kpi-grid"></div>
         </section>

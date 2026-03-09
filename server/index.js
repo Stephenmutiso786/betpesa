@@ -1397,7 +1397,7 @@ async function bootstrap() {
         sendStaticFile(res, '/admin.html');
         return;
       }
-      if (urlObj.pathname === '/signals-admin') {
+      if (urlObj.pathname === '/signals-admin' || urlObj.pathname === '/signal') {
         sendStaticFile(res, '/signals-admin.html');
         return;
       }

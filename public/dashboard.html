@@ -10,7 +10,7 @@
     <main class="dash-shell client-shell">
       <section class="promo-strip">
         <span>Earn Ksh 500.00 per referral</span>
-        <button type="button">Join Now</button>
+        <button id="join-now-btn" type="button">Join Now</button>
       </section>
 
       <header class="brand-bar">
@@ -33,7 +33,7 @@
         <strong>1500x</strong>
       </section>
 
-      <section class="panel aviator-panel">
+      <section class="panel aviator-panel" id="client-game-section">
         <div class="aviator-screen">
           <p class="round-line">Round <strong id="aviator-round">-</strong></p>
           <p class="phase-line">Status: <strong id="aviator-phase">betting</strong></p>
@@ -49,9 +49,9 @@
 
       <section class="panel aviator-controls">
         <div class="controls-top">
-          <button type="button" class="mini-btn">AUTO</button>
-          <button type="button" class="mini-btn">CASH</button>
-          <input type="number" step="0.1" min="1.1" value="2.00" readonly />
+          <button id="aviator-auto-btn" type="button" class="mini-btn">AUTO</button>
+          <button id="aviator-cash-mode-btn" type="button" class="mini-btn">CASH</button>
+          <input id="aviator-cash-target" type="number" step="0.1" min="1.1" value="2.00" readonly />
         </div>
         <div class="aviator-actions">
           <form id="aviator-bet-form" class="stack">
@@ -62,7 +62,7 @@
         </div>
       </section>
 
-      <section class="panel two-col">
+      <section class="panel two-col" id="client-wallet-section">
         <form id="mpesa-form" class="stack">
           <h2>M-Pesa Deposit (STK Push)</h2>
           <input id="mpesa-phone" type="tel" placeholder="2547XXXXXXXX" required />
@@ -93,7 +93,7 @@
         <div id="events" class="stack"></div>
       </section>
 
-      <section class="panel two-col">
+      <section class="panel two-col" id="client-bets-section">
         <div>
           <h2>Bet Slip / My Bets</h2>
           <div id="bets" class="stack"></div>
@@ -105,11 +105,18 @@
       </section>
 
       <nav class="mobile-bottom-nav">
-        <button type="button">Game</button>
-        <button type="button">Bets</button>
-        <button type="button">Wallet</button>
-        <button type="button">Menu</button>
+        <button type="button" data-nav-target="client-game-section">Game</button>
+        <button type="button" data-nav-target="client-bets-section">Bets</button>
+        <button type="button" data-nav-target="client-wallet-section">Wallet</button>
+        <button id="client-menu-btn" type="button">Menu</button>
       </nav>
+
+      <div id="client-menu-panel" class="client-menu-panel hidden">
+        <button type="button" data-nav-target="client-game-section">Go to Game</button>
+        <button type="button" data-nav-target="client-wallet-section">Deposit/Withdraw</button>
+        <button type="button" data-nav-target="client-bets-section">My Bets</button>
+        <button type="button" id="client-menu-close">Close</button>
+      </div>
 
       <p id="status" class="status"></p>
     </main>

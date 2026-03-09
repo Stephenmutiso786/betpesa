@@ -81,6 +81,12 @@ button:hover {
   filter: brightness(1.05);
 }
 
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: none;
+}
+
 .link-btn {
   background: transparent;
   color: var(--muted);
@@ -475,6 +481,12 @@ button:hover {
   font-size: 0.72rem;
 }
 
+.aviator-controls .mini-btn.active {
+  color: #072216;
+  border-color: #2fe083;
+  background: linear-gradient(180deg, #41f48f, #23c96d);
+}
+
 .aviator-controls .controls-top input {
   text-align: center;
 }
@@ -514,6 +526,26 @@ button:hover {
   color: #b49be5;
   padding: 0.35rem 0.2rem;
   font-size: 0.7rem;
+}
+
+.client-menu-panel {
+  position: fixed;
+  right: 8px;
+  bottom: 64px;
+  width: min(240px, 70vw);
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  border: 1px solid #2d2f4d;
+  border-radius: 12px;
+  background: #0f1020;
+  z-index: 90;
+}
+
+.client-menu-panel button {
+  background: #14182c;
+  border: 1px solid #2c3b5b;
+  color: #cbd8ee;
 }
 
 .admin-shell {
@@ -635,22 +667,52 @@ button:hover {
   min-height: 520px;
   background: radial-gradient(circle at center, #101525 0, #0b0f19 62%, #090b11 100%);
   border: 1px solid #22273a;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
 }
 
-#admin-aviator-canvas {
-  width: 100%;
-  height: 420px;
-  min-height: 420px;
-  border-radius: 10px;
+.admin-odds-stage {
+  min-height: 360px;
   border: 1px solid #20263a;
-  margin-top: 0.8rem;
-  display: block;
+  border-radius: 12px;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.06) 0%, rgba(8, 12, 22, 0.9) 65%);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.8rem;
+}
+
+.admin-odds-label {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c6d0df;
+}
+
+.admin-odds-value {
+  margin: 0;
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 1;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+}
+
+.admin-odds-meta {
+  margin: 0;
+  background: #d8dde8;
+  color: #111826;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  font-weight: 700;
 }
 
 .admin-aviator-screen .aviator-multiplier {
   color: #f5f7ff;
-  font-size: 4.8rem;
-  margin-top: 0.8rem;
+  font-size: 1.8rem;
+  margin: 0;
 }
 
 .admin-upcoming h3 {
@@ -749,6 +811,159 @@ button:hover {
 .tx-pos { color: #35e58a; font-weight: 700; }
 .tx-neg { color: #ff6078; font-weight: 700; }
 
+.signal-live-shell {
+  min-height: 100dvh;
+  background: radial-gradient(circle at center top, #111930 0%, #05080f 62%, #04060c 100%);
+  color: #e6f0ff;
+}
+
+.signal-live-topbar {
+  height: 62px;
+  padding: 0 18px;
+  background: linear-gradient(90deg, #071322, #0c1525 40%, #121630);
+  border-bottom: 1px solid #1e3148;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signal-live-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal-live-brand .dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #0df0b5;
+  box-shadow: 0 0 10px rgba(13, 240, 181, 0.6);
+}
+
+.signal-live-brand strong {
+  font-size: 1.9rem;
+  letter-spacing: 0.02em;
+  color: #11e0cf;
+}
+
+.signal-live-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal-refresh-badge {
+  font-size: 0.72rem;
+  color: #6affaa;
+  background: rgba(23, 76, 48, 0.25);
+  border: 1px solid #1f6d4a;
+  border-radius: 999px;
+  padding: 0.24rem 0.6rem;
+}
+
+.signal-live-right button {
+  width: auto;
+  background: #12162b;
+  border: 1px solid #2a3f61;
+  color: #c7d8f4;
+  padding: 0.36rem 0.72rem;
+  font-size: 0.75rem;
+}
+
+.signal-live-center {
+  width: min(980px, 94vw);
+  margin: 16px auto 0;
+}
+
+.signal-live-card {
+  min-height: 205px;
+  border-radius: 14px;
+  border: 1px solid #2a3f64;
+  background: linear-gradient(140deg, #15233a, #1d2942);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.28rem;
+}
+
+.signal-live-card .meta {
+  color: #8ea5c6;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.signal-live-card .state {
+  margin: 0;
+  color: #68f099;
+  font-size: 0.86rem;
+}
+
+.signal-live-card .live-odd {
+  margin: 0.15rem 0;
+  font-size: clamp(3rem, 9vw, 4.4rem);
+  font-weight: 900;
+  color: #36e486;
+  line-height: 1;
+}
+
+.signal-live-card .target {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #32c7ff;
+}
+
+.signal-upcoming-wrap {
+  margin-top: 18px;
+}
+
+.signal-upcoming-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.signal-upcoming-head h2 {
+  margin: 0;
+}
+
+.signal-upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.signal-upcoming-grid .up-card {
+  background: #121a2f;
+  border: 1px solid #263b60;
+  border-radius: 10px;
+  padding: 0.55rem;
+  display: grid;
+  gap: 0.3rem;
+  justify-items: center;
+}
+
+.signal-upcoming-grid .up-card small {
+  color: #7f95b6;
+  font-size: 0.68rem;
+}
+
+.signal-upcoming-grid .up-card strong {
+  font-size: 1.7rem;
+  color: #ffd245;
+}
+
+.signal-upcoming-grid .up-card span {
+  font-size: 0.65rem;
+  background: #2d3118;
+  color: #e9cf5d;
+  border: 1px solid #4c5425;
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+}
+
 @media (max-width: 760px) {
   .two-col {
     grid-template-columns: 1fr;
@@ -819,12 +1034,19 @@ button:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  #admin-aviator-canvas {
-    min-height: 300px;
-    height: 300px;
+  .admin-odds-stage {
+    min-height: 280px;
   }
 
   .admin-aviator-screen .aviator-multiplier {
-    font-size: 3rem;
+    font-size: 1.4rem;
+  }
+
+  .signal-live-brand strong {
+    font-size: 1.35rem;
+  }
+
+  .signal-upcoming-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

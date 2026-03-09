@@ -3,87 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Signal Portal</title>
+    <title>BetPesa Signal</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main class="dash-shell portal-shell signal-shell">
-      <aside class="portal-sidebar">
-        <div class="portal-brand">
-          <strong>BETPESA</strong>
-          <small>Signal Center</small>
+    <main class="signal-live-shell">
+      <header class="signal-live-topbar">
+        <div class="signal-live-brand">
+          <span class="dot"></span>
+          <strong>BETPESA Signal</strong>
         </div>
-        <nav class="portal-nav">
-          <a href="/signals-admin" class="active">Dashboard</a>
-          <a href="#sp-aviator-upcoming">Live Signals</a>
-          <a href="#sp-create-form">Create Signal</a>
-          <a href="#sp-signals">Signal History</a>
-          <a href="#sp-stats">Performance</a>
-        </nav>
-      </aside>
+        <div class="signal-live-right">
+          <span class="signal-refresh-badge" id="sp-refresh-badge">Live • Auto-refresh 1s</span>
+          <button id="sp-logout-btn" type="button">Logout</button>
+        </div>
+      </header>
 
-      <section class="portal-content">
-        <header class="admin-topbar">
-          <div class="brand-left">
-            <strong>Signal Dashboard</strong>
-            <small id="sp-me">Loading...</small>
+      <section class="signal-live-center">
+        <article class="signal-live-card">
+          <small class="meta">CURRENT ROUND</small>
+          <p class="state" id="sp-current-state">• WAITING</p>
+          <p class="live-odd" id="sp-aviator-live">1.00x</p>
+          <small class="meta">CRASH TARGET</small>
+          <p class="target" id="sp-aviator-target">2.00x</p>
+          <small id="sp-round-id">-</small>
+        </article>
+
+        <section class="signal-upcoming-wrap">
+          <div class="signal-upcoming-head">
+            <h2>Upcoming Crash Points</h2>
+            <small id="sp-aviator-next">Refresh in 1s</small>
           </div>
-          <div class="top-right">
-            <button id="sp-logout-btn" type="button">Logout</button>
-          </div>
-        </header>
-
-        <section class="panel history-strip">
-          <div id="sp-aviator-history" class="aviator-chip-list"></div>
+          <div id="sp-aviator-upcoming-grid" class="signal-upcoming-grid"></div>
         </section>
-
-        <section class="panel two-col">
-          <div class="stack">
-            <h2>Auto Aviator Signals</h2>
-            <div class="item">
-              <strong>Live</strong>
-              <small id="sp-aviator-live">1.00x</small>
-              <strong>Target</strong>
-              <small id="sp-aviator-target">2.00x</small>
-              <strong>Mode</strong>
-              <small id="sp-aviator-mode">-</small>
-              <strong>Next Refresh</strong>
-              <small id="sp-aviator-next">-</small>
-            </div>
-            <div id="sp-aviator-upcoming" class="stack"></div>
-          </div>
-
-          <div class="stack">
-            <h2>Status</h2>
-            <div id="sp-stats" class="stack"></div>
-          </div>
-        </section>
-
-        <section class="panel">
-          <form id="sp-create-form" class="stack">
-            <h2>Create Signal</h2>
-            <input id="sp-game" placeholder="Game / Match (e.g Arsenal vs Chelsea)" required />
-            <input id="sp-prediction" placeholder="Prediction (e.g Over 2.5 Goals)" required />
-            <input id="sp-odds" type="number" min="1.01" step="0.01" placeholder="Odds" required />
-            <select id="sp-confidence">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-            <input id="sp-starts-at" type="datetime-local" required />
-            <button type="submit">Publish For Approval</button>
-          </form>
-        </section>
-
-        <section class="panel">
-          <h2>My Signal History</h2>
-          <div id="sp-signals" class="stack"></div>
-        </section>
-
-        <p id="sp-status" class="status"></p>
       </section>
-    </main>
 
+      <p id="sp-status" class="status"></p>
+    </main>
     <script src="/signals-admin.js"></script>
   </body>
 </html>

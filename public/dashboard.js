@@ -19,6 +19,13 @@ const aviatorFlewAwayEl = document.getElementById('aviator-flewaway');
 const aviatorFlewAwayMultEl = document.getElementById('aviator-flewaway-mult');
 const aviatorCashoutBtn = document.getElementById('aviator-cashout-btn');
 const aviatorCanvas = document.getElementById('aviator-canvas');
+const aviatorAutoBtn = document.getElementById('aviator-auto-btn');
+const aviatorCashModeBtn = document.getElementById('aviator-cash-mode-btn');
+const aviatorCashTargetInput = document.getElementById('aviator-cash-target');
+const joinNowBtn = document.getElementById('join-now-btn');
+const clientMenuBtn = document.getElementById('client-menu-btn');
+const clientMenuPanel = document.getElementById('client-menu-panel');
+const clientMenuClose = document.getElementById('client-menu-close');
 
 let me = null;
 let aviatorTimer = null;
@@ -26,6 +33,15 @@ let aviatorState = null;
 let aviatorFrame = null;
 let flightStartMs = Date.now();
 let mpesaPollTimer = null;
+let autoCashoutArmed = false;
+let autoCashoutInFlight = false;
+
+function setBusy(el, busy, busyText = 'Processing...') {
+  if (!el) return;
+  if (!el.dataset.idleText) el.dataset.idleText = el.textContent || '';
+  el.disabled = !!busy;
+  el.textContent = busy ? busyText : el.dataset.idleText;
+}
 
 function phaseLabel(phase) {
   return phase === 'crashed' ? 'flew away' : phase;
@@ -53,6 +69,12 @@ function computeCountdown(state) {
 function setStatus(message, error = false) {
   statusEl.textContent = message;
   statusEl.style.color = error ? '#d93535' : '#1db954';
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function fmtMoney(value) {
@@ -212,6 +234,27 @@ async function renderAviator() {
     chip.textContent = `${Number(row.crashPoint).toFixed(2)}x`;
     aviatorOddsListEl.appendChild(chip);
   });
+
+  if (
+    autoCashoutArmed &&
+    !autoCashoutInFlight &&
+    state.phase === 'flying' &&
+    state.userBet &&
+    !state.userBet.cashedOut &&
+    Number(state.multiplier || 1) >= Number(aviatorCashTargetInput.value || 2)
+  ) {
+    autoCashoutInFlight = true;
+    try {
+      const data = await api('/aviator/cashout', { method: 'POST' });
+      setStatus(`Auto cashout at ${Number(data.cashoutMultiplier).toFixed(2)}x for KES ${fmtMoney(data.payout)}`);
+      await refreshMe();
+      await renderTransactions();
+    } catch (err) {
+      setStatus(`Auto cashout failed: ${err.message}`, true);
+    } finally {
+      autoCashoutInFlight = false;
+    }
+  }
 }
 
 function drawAviator() {
@@ -383,9 +426,62 @@ document.getElementById('logout-btn').addEventListener('click', async () => {
   window.location.replace('/login');
 });
 
+joinNowBtn.addEventListener('click', () => {
+  scrollToSection('client-wallet-section');
+  document.getElementById('mpesa-amount')?.focus();
+  setStatus('Open wallet section and deposit to join referral campaign');
+});
+
+aviatorAutoBtn.addEventListener('click', () => {
+  autoCashoutArmed = !autoCashoutArmed;
+  aviatorAutoBtn.classList.toggle('active', autoCashoutArmed);
+  setStatus(autoCashoutArmed ? 'Auto cashout armed' : 'Auto cashout disabled');
+});
+
+aviatorCashModeBtn.addEventListener('click', () => {
+  const editable = aviatorCashTargetInput.hasAttribute('readonly');
+  if (editable) {
+    aviatorCashTargetInput.removeAttribute('readonly');
+    aviatorCashModeBtn.classList.add('active');
+    setStatus('Cash target editable');
+  } else {
+    aviatorCashTargetInput.setAttribute('readonly', 'readonly');
+    aviatorCashModeBtn.classList.remove('active');
+    setStatus('Cash target locked');
+  }
+});
+
+aviatorCashTargetInput.addEventListener('change', () => {
+  const val = Number(aviatorCashTargetInput.value || 2);
+  if (!Number.isFinite(val) || val < 1.1) {
+    aviatorCashTargetInput.value = '2.00';
+    setStatus('Cash target reset to 2.00x', true);
+    return;
+  }
+  aviatorCashTargetInput.value = val.toFixed(2);
+});
+
+document.querySelectorAll('[data-nav-target]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    scrollToSection(btn.dataset.navTarget);
+    clientMenuPanel?.classList.add('hidden');
+  });
+});
+
+clientMenuBtn.addEventListener('click', () => {
+  clientMenuPanel.classList.toggle('hidden');
+});
+
+clientMenuClose.addEventListener('click', () => {
+  clientMenuPanel.classList.add('hidden');
+});
+
 document.getElementById('mpesa-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Sending STK...');
     const data = await api('/payments/mpesa/stkpush', {
       method: 'POST',
       body: JSON.stringify({
@@ -419,12 +515,17 @@ document.getElementById('mpesa-form').addEventListener('submit', async (e) => {
     }, 4000);
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
 document.getElementById('aviator-bet-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Placing...');
     await api('/aviator/bet', {
       method: 'POST',
       body: JSON.stringify({ stake: document.getElementById('aviator-stake').value })
@@ -435,11 +536,15 @@ document.getElementById('aviator-bet-form').addEventListener('submit', async (e)
     await renderTransactions();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
 aviatorCashoutBtn.addEventListener('click', async () => {
+  if (aviatorCashoutBtn.disabled) return;
   try {
+    setBusy(aviatorCashoutBtn, true, 'Cashing out...');
     const data = await api('/aviator/cashout', { method: 'POST' });
     setStatus(`Cashed out at ${Number(data.cashoutMultiplier).toFixed(2)}x for KES ${fmtMoney(data.payout)}`);
     await refreshMe();
@@ -447,12 +552,17 @@ aviatorCashoutBtn.addEventListener('click', async () => {
     await renderTransactions();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(aviatorCashoutBtn, false);
   }
 });
 
 document.getElementById('withdraw-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Withdrawing...');
     await api('/withdraw', {
       method: 'POST',
       body: JSON.stringify({ amount: document.getElementById('withdraw-amount').value })
@@ -463,6 +573,8 @@ document.getElementById('withdraw-form').addEventListener('submit', async (e) =>
     setStatus('Withdrawal successful');
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 

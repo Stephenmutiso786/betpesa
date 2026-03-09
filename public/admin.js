@@ -15,7 +15,8 @@ const adminAviatorRoundEl = document.getElementById('admin-aviator-round');
 const adminAviatorPhaseEl = document.getElementById('admin-aviator-phase');
 const adminAviatorCountdownEl = document.getElementById('admin-aviator-countdown');
 const adminAviatorMultiplierEl = document.getElementById('admin-aviator-multiplier');
-const adminAviatorCanvas = document.getElementById('admin-aviator-canvas');
+const adminOddsLabelEl = document.getElementById('admin-odds-label');
+const adminOddsValueEl = document.getElementById('admin-odds-value');
 const adminAviatorCurrentOddEl = document.getElementById('admin-aviator-current-odd');
 const adminAviatorLastOddEl = document.getElementById('admin-aviator-last-odd');
 const adminAviatorNextOddEl = document.getElementById('admin-aviator-next-odd');
@@ -25,11 +26,19 @@ const oddsEventEl = document.getElementById('odds-event');
 const roleUserEl = document.getElementById('role-user');
 const roleValueEl = document.getElementById('role-value');
 const adminSignalEl = document.getElementById('admin-signal');
+const periodButtons = Array.from(document.querySelectorAll('.period-tabs [data-period]'));
 
 let refreshTimer = null;
 let adminAviatorState = null;
-let adminAviatorFrame = null;
-let adminFlightStartMs = Date.now();
+let overviewSnapshot = null;
+let activePeriod = 'all';
+
+function setBusy(el, busy, busyText = 'Processing...') {
+  if (!el) return;
+  if (!el.dataset.idleText) el.dataset.idleText = el.textContent || '';
+  el.disabled = !!busy;
+  el.textContent = busy ? busyText : el.dataset.idleText;
+}
 
 function phaseLabel(phase) {
   return phase === 'crashed' ? 'flew away' : phase;
@@ -48,6 +57,29 @@ function oddsModeLabel(mode) {
   if (mode === 'active_bets_low_range') return 'Bet placed (1.01x - 1.97x)';
   if (mode === 'no_bets_high_range') return 'No bets (8.01x - 79.81x)';
   return '-';
+}
+
+function periodFactor(period) {
+  if (period === 'today') return 0.22;
+  if (period === 'week') return 0.58;
+  if (period === 'month') return 0.81;
+  if (period === 'custom') return 0.47;
+  return 1;
+}
+
+function renderOverviewCards(snapshot, period = 'all') {
+  if (!snapshot) return;
+  const f = periodFactor(period);
+  overviewEl.innerHTML = `
+    <article class="kpi-card kpi-blue"><small>Users</small><strong>${Math.max(1, Math.round(snapshot.users * f))}</strong></article>
+    <article class="kpi-card kpi-green"><small>Revenue</small><strong>KES ${fmt(snapshot.revenue * f)}</strong></article>
+    <article class="kpi-card kpi-gold"><small>Deposits</small><strong>KES ${fmt(snapshot.deposits * f)}</strong></article>
+    <article class="kpi-card kpi-red"><small>Withdrawals</small><strong>KES ${fmt(snapshot.withdrawals * f)}</strong></article>
+    <article class="kpi-card"><small>Total Bets</small><strong>KES ${fmt(snapshot.totalBets * f)}</strong></article>
+    <article class="kpi-card"><small>Total Cashouts</small><strong>KES ${fmt(snapshot.totalCashouts * f)}</strong></article>
+    <article class="kpi-card kpi-violet"><small>Transactions</small><strong>${Math.max(1, Math.round(snapshot.transactions * f))}</strong></article>
+    <article class="kpi-card"><small>Net Cashflow</small><strong>KES ${fmt(snapshot.netCashflow * f)}</strong></article>
+  `;
 }
 
 function formatSecs(ms) {
@@ -100,16 +132,17 @@ async function ensureAdmin() {
 
 async function loadLive() {
   const data = await api('/admin/live');
-  overviewEl.innerHTML = `
-    <article class="kpi-card kpi-blue"><small>Users</small><strong>${data.overview.users}</strong></article>
-    <article class="kpi-card kpi-green"><small>Revenue</small><strong>KES ${fmt(data.finance?.deposits)}</strong></article>
-    <article class="kpi-card kpi-gold"><small>Deposits</small><strong>KES ${fmt(data.finance?.deposits)}</strong></article>
-    <article class="kpi-card kpi-red"><small>Withdrawals</small><strong>KES ${fmt(data.finance?.withdrawals)}</strong></article>
-    <article class="kpi-card"><small>Total Bets</small><strong>KES ${fmt(data.finance?.stakes)}</strong></article>
-    <article class="kpi-card"><small>Total Cashouts</small><strong>KES ${fmt(data.finance?.payouts)}</strong></article>
-    <article class="kpi-card kpi-violet"><small>Transactions</small><strong>${data.overview.transactions}</strong></article>
-    <article class="kpi-card"><small>Net Cashflow</small><strong>KES ${fmt(data.finance?.netCashflow)}</strong></article>
-  `;
+  overviewSnapshot = {
+    users: Number(data.overview.users || 0),
+    revenue: Number(data.finance?.deposits || 0),
+    deposits: Number(data.finance?.deposits || 0),
+    withdrawals: Number(data.finance?.withdrawals || 0),
+    totalBets: Number(data.finance?.stakes || 0),
+    totalCashouts: Number(data.finance?.payouts || 0),
+    transactions: Number(data.overview.transactions || 0),
+    netCashflow: Number(data.finance?.netCashflow || 0)
+  };
+  renderOverviewCards(overviewSnapshot, activePeriod);
 
   aviatorEl.innerHTML = `
     <div class="item">Round: <strong>${String(data.aviator.roundId || '-').slice(0, 8)}</strong></div>
@@ -117,18 +150,20 @@ async function loadLive() {
     <div class="item">Live Multiplier: <strong>${fmt(data.aviator.multiplier)}x</strong></div>
   `;
 
-  if (
-    !adminAviatorState ||
-    adminAviatorState.roundId !== data.aviator.roundId ||
-    adminAviatorState.phase !== data.aviator.phase
-  ) {
-    adminFlightStartMs = Date.now();
-  }
   adminAviatorState = data.aviator;
   adminAviatorRoundEl.textContent = String(data.aviator.roundId || '-').slice(0, 8);
   adminAviatorPhaseEl.textContent = phaseLabel(data.aviator.phase || 'betting');
   adminAviatorCountdownEl.textContent = computeCountdown(data.aviator);
   adminAviatorMultiplierEl.textContent = `${fmt(data.aviator.multiplier || 1)}x`;
+  const countdownText = adminAviatorCountdownEl.textContent || '';
+  if (data.aviator.phase === 'flying') {
+    adminOddsLabelEl.textContent = 'LIVE ODDS';
+    adminOddsValueEl.textContent = `${fmt(data.aviator.multiplier || 1)}x`;
+  } else {
+    adminOddsLabelEl.textContent = 'NEXT ROUND IN';
+    const secsMatch = countdownText.match(/(\d+)s/);
+    adminOddsValueEl.textContent = secsMatch ? secsMatch[1] : '--';
+  }
 
   adminSignalLiveDisplayEl.textContent = fmt(data.aviator.signalAdmin?.live || data.aviator.multiplier || 1);
   adminSignalTargetDisplayEl.textContent = `Target: ${fmt(data.aviator.signalAdmin?.target || 2)}x`;
@@ -196,97 +231,6 @@ async function loadLive() {
   });
 }
 
-function drawAdminAviator() {
-  if (!adminAviatorCanvas) return;
-  const ctx = adminAviatorCanvas.getContext('2d');
-  const w = adminAviatorCanvas.width;
-  const h = adminAviatorCanvas.height;
-
-  const grd = ctx.createRadialGradient(w * 0.5, h * 0.55, 10, w * 0.5, h * 0.55, h * 0.8);
-  grd.addColorStop(0, '#1f2235');
-  grd.addColorStop(0.45, '#111625');
-  grd.addColorStop(1, '#090b11');
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, w, h);
-
-  const cx = w / 2;
-  const cy = h * 0.62;
-  ctx.save();
-  ctx.strokeStyle = 'rgba(255,255,255,0.045)';
-  ctx.lineWidth = 1;
-  for (let i = 0; i < 28; i += 1) {
-    const a = (Math.PI * 2 * i) / 28;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + Math.cos(a) * w, cy + Math.sin(a) * h);
-    ctx.stroke();
-  }
-  ctx.restore();
-
-  ctx.strokeStyle = '#2a2f47';
-  ctx.lineWidth = 1;
-  for (let i = 0; i <= 5; i += 1) {
-    const y = (h / 5) * i;
-    ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(w, y);
-    ctx.stroke();
-  }
-
-  const phase = adminAviatorState?.phase || 'betting';
-  const elapsed = (Date.now() - adminFlightStartMs) / 1000;
-  const progress = phase === 'flying' ? Math.min(1, elapsed / 10) : phase === 'crashed' ? 1 : 0;
-
-  const points = [];
-  for (let i = 0; i <= 120; i += 1) {
-    const t = i / 120;
-    const x = 20 + t * (w - 40) * progress;
-    const curve = Math.pow(t, 1.8);
-    const y = h - 18 - curve * (h - 42);
-    points.push({ x, y });
-  }
-
-  if (points.length > 1) {
-    ctx.strokeStyle = '#ff3f4f';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < points.length; i += 1) ctx.lineTo(points[i].x, points[i].y);
-    ctx.stroke();
-  }
-
-  if (points.length) {
-    const p = points[points.length - 1];
-    const prev = points[Math.max(0, points.length - 2)];
-    const angle = Math.atan2(p.y - prev.y, p.x - prev.x);
-
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(angle);
-    ctx.fillStyle = '#ff3d4c';
-    ctx.beginPath();
-    ctx.moveTo(14, 0);
-    ctx.lineTo(-5, -5);
-    ctx.lineTo(-2, 0);
-    ctx.lineTo(-5, 5);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = '#a90f20';
-    ctx.fillRect(-1, -2, 7, 4);
-    ctx.fillStyle = '#ff7682';
-    ctx.beginPath();
-    ctx.moveTo(-4, 0);
-    ctx.lineTo(-13, -7);
-    ctx.lineTo(-10, 0);
-    ctx.lineTo(-13, 7);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
-  }
-
-  adminAviatorFrame = requestAnimationFrame(drawAdminAviator);
-}
-
 async function loadEvents() {
   const data = await api('/events');
   oddsEventEl.innerHTML = '';
@@ -340,7 +284,10 @@ oddsEventEl.addEventListener('change', () => {
 
 document.getElementById('odds-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Updating...');
     await api('/admin/events/odds', {
       method: 'POST',
       body: JSON.stringify({
@@ -356,12 +303,17 @@ document.getElementById('odds-form').addEventListener('submit', async (e) => {
     await loadEvents();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
 document.getElementById('settle-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Settling...');
     await api('/admin/settle', {
       method: 'POST',
       body: JSON.stringify({
@@ -374,12 +326,17 @@ document.getElementById('settle-form').addEventListener('submit', async (e) => {
     await loadLive();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
 document.getElementById('role-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Applying...');
     await api('/admin/users/role', {
       method: 'POST',
       body: JSON.stringify({
@@ -391,12 +348,17 @@ document.getElementById('role-form').addEventListener('submit', async (e) => {
     await loadUsers();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
 document.getElementById('signal-approve-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn?.disabled) return;
   try {
+    setBusy(submitBtn, true, 'Applying...');
     await api('/admin/signals/status', {
       method: 'POST',
       body: JSON.stringify({
@@ -408,6 +370,8 @@ document.getElementById('signal-approve-form').addEventListener('submit', async 
     await loadSignalsAdmin();
   } catch (err) {
     setStatus(err.message, true);
+  } finally {
+    setBusy(submitBtn, false);
   }
 });
 
@@ -419,7 +383,6 @@ document.getElementById('admin-logout-btn').addEventListener('click', async () =
   localStorage.removeItem('betpesa_token');
   token = '';
   if (refreshTimer) clearInterval(refreshTimer);
-  if (adminAviatorFrame) cancelAnimationFrame(adminAviatorFrame);
   window.location.replace('/login');
 });
 
@@ -431,8 +394,15 @@ document.getElementById('admin-logout-btn').addEventListener('click', async () =
     await loadUsers();
     await loadSignalsAdmin();
     await loadLive();
-    if (adminAviatorFrame) cancelAnimationFrame(adminAviatorFrame);
-    drawAdminAviator();
+    periodButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activePeriod = btn.dataset.period || 'all';
+        periodButtons.forEach((other) => other.classList.remove('active'));
+        btn.classList.add('active');
+        renderOverviewCards(overviewSnapshot, activePeriod);
+        setStatus(`Overview switched to ${btn.textContent}`);
+      });
+    });
     refreshTimer = setInterval(async () => {
       try {
         await loadLive();
