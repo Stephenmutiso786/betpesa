@@ -6,6 +6,7 @@ const meEl = document.getElementById('admin-me');
 const overviewEl = document.getElementById('admin-overview');
 const aviatorEl = document.getElementById('admin-aviator');
 const betsEl = document.getElementById('admin-bets');
+const txRowsEl = document.getElementById('admin-tx-rows');
 const adminSignalHistoryEl = document.getElementById('admin-signal-history');
 const adminSignalLiveDisplayEl = document.getElementById('admin-signal-live-display');
 const adminSignalTargetDisplayEl = document.getElementById('admin-signal-target-display');
@@ -100,17 +101,14 @@ async function ensureAdmin() {
 async function loadLive() {
   const data = await api('/admin/live');
   overviewEl.innerHTML = `
-    <div class="item">Users: <strong>${data.overview.users}</strong></div>
-    <div class="item">Open Bets: <strong>${data.overview.openBets}</strong></div>
-    <div class="item">Pending KYC: <strong>${data.overview.pendingKyc}</strong></div>
-    <div class="item">Transactions: <strong>${data.overview.transactions}</strong></div>
-    <div class="item">Recent Stake Volume: <strong>KES ${fmt(data.totalStaked)}</strong></div>
-    <div class="item">Total Deposits: <strong>KES ${fmt(data.finance?.deposits)}</strong></div>
-    <div class="item">Total Withdrawals: <strong>KES ${fmt(data.finance?.withdrawals)}</strong></div>
-    <div class="item">Total Stakes: <strong>KES ${fmt(data.finance?.stakes)}</strong></div>
-    <div class="item">Total Payouts: <strong>KES ${fmt(data.finance?.payouts)}</strong></div>
-    <div class="item">System GGR: <strong>KES ${fmt(data.finance?.ggr)}</strong></div>
-    <div class="item">Net Cashflow: <strong>KES ${fmt(data.finance?.netCashflow)}</strong></div>
+    <article class="kpi-card kpi-blue"><small>Users</small><strong>${data.overview.users}</strong></article>
+    <article class="kpi-card kpi-green"><small>Revenue</small><strong>KES ${fmt(data.finance?.deposits)}</strong></article>
+    <article class="kpi-card kpi-gold"><small>Deposits</small><strong>KES ${fmt(data.finance?.deposits)}</strong></article>
+    <article class="kpi-card kpi-red"><small>Withdrawals</small><strong>KES ${fmt(data.finance?.withdrawals)}</strong></article>
+    <article class="kpi-card"><small>Total Bets</small><strong>KES ${fmt(data.finance?.stakes)}</strong></article>
+    <article class="kpi-card"><small>Total Cashouts</small><strong>KES ${fmt(data.finance?.payouts)}</strong></article>
+    <article class="kpi-card kpi-violet"><small>Transactions</small><strong>${data.overview.transactions}</strong></article>
+    <article class="kpi-card"><small>Net Cashflow</small><strong>KES ${fmt(data.finance?.netCashflow)}</strong></article>
   `;
 
   aviatorEl.innerHTML = `
@@ -180,6 +178,21 @@ async function loadLive() {
     row.className = 'item';
     row.textContent = `${b.id} | ${b.eventId} | ${b.market} | stake ${fmt(b.stake)} | ${b.status}`;
     betsEl.appendChild(row);
+  });
+
+  txRowsEl.innerHTML = '';
+  (data.recentBets || []).slice(0, 12).forEach((b) => {
+    const tr = document.createElement('tr');
+    const type = b.status === 'open' ? 'Bet' : b.status === 'won' ? 'Payout' : 'Bet';
+    const amount = Number(b.stake || 0);
+    tr.innerHTML = `
+      <td>${new Date(b.createdAt || Date.now()).toLocaleString()}</td>
+      <td class="tx-type">${type}</td>
+      <td>${String(b.userId || 'system').slice(0, 10)}</td>
+      <td class="${amount >= 0 ? 'tx-pos' : 'tx-neg'}">${amount >= 0 ? '+' : ''}KES ${fmt(Math.abs(amount))}</td>
+      <td>${b.market || 'Aviator'}</td>
+    `;
+    txRowsEl.appendChild(tr);
   });
 }
 

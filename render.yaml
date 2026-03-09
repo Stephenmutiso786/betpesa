@@ -1,0 +1,66 @@
+services:
+  - type: redis
+    name: betpesa-redis
+    plan: starter
+
+  - type: web
+    name: betpesa-web
+    runtime: node
+    plan: starter
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /login
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: ADMIN_SECRET
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_TTL_HOURS
+        value: 168
+      - key: MAX_STAKE
+        value: 5000
+      - key: DEFAULT_DAILY_DEPOSIT_LIMIT
+        value: 1000
+      - key: AVIATOR_BETTING_MS
+        value: 10000
+      - key: AVIATOR_ROUND_GAP_MS
+        value: 6000
+      - key: AVIATOR_TICK_MS
+        value: 200
+      - key: AVIATOR_MAX_BET
+        value: 5000
+      - key: MPESA_ENV
+        value: sandbox
+      - key: MPESA_CONSUMER_KEY
+        sync: false
+      - key: MPESA_CONSUMER_SECRET
+        sync: false
+      - key: MPESA_SHORTCODE
+        sync: false
+      - key: MPESA_PASSKEY
+        sync: false
+      - key: MPESA_CALLBACK_URL
+        sync: false
+      - key: MPESA_TRANSACTION_TYPE
+        value: CustomerPayBillOnline
+      - key: DATABASE_URL
+        fromDatabase:
+          name: betpesa-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: betpesa-redis
+          property: connectionString
+
+databases:
+  - name: betpesa-db
+    plan: starter
