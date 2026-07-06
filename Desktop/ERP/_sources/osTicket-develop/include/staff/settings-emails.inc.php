@@ -232,6 +232,12 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
                 </div>
             </td>
         </tr>
+        <tr>
+            <td width="180"><?php echo __('Notice'); ?>:</td>
+            <td>
+                <div id="gmail-inline-message" class="alert alert-info mb-0 py-2 px-3" style="display:none;"></div>
+            </td>
+        </tr>
     </tbody>
 </table>
 <p style="text-align:center;">
@@ -245,6 +251,18 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
 <script type="text/javascript">
 $(function() {
     var rootPath = '<?php echo rtrim(ROOT_PATH, "/"); ?>/';
+    function showGmailMessage(message, kind) {
+        var $box = $('#gmail-inline-message');
+        if (!message) {
+            $box.hide().removeClass('alert-success alert-danger alert-info alert-warning').text('');
+            return;
+        }
+        var classes = 'alert-info';
+        if (kind === 'success') classes = 'alert-success';
+        else if (kind === 'error') classes = 'alert-danger';
+        else if (kind === 'warning') classes = 'alert-warning';
+        $box.removeClass('alert-success alert-danger alert-info alert-warning').addClass(classes).text(message).show();
+    }
     function renderGmailStatus(status) {
         if (!status)
             return;
@@ -285,6 +303,8 @@ $(function() {
                     success: function(json) {
                         if (json && json.authorization_url)
                             window.location.href = json.authorization_url;
+                        else
+                            showGmailMessage('<?php echo addslashes(__('Gmail settings saved.')); ?>', 'success');
                     }
                 });
             }
@@ -296,9 +316,9 @@ $(function() {
             method: 'GET',
             cache: false,
             success: function(json) {
-                alert((json && json.summary)
+                showGmailMessage((json && json.summary)
                     ? '<?php echo addslashes(__('Processed')); ?>: ' + json.summary.processed + ', <?php echo addslashes(__('Skipped')); ?>: ' + json.summary.skipped + ', <?php echo addslashes(__('Errors')); ?>: ' + json.summary.errors
-                    : '<?php echo addslashes(__('Gmail test completed')); ?>');
+                    : '<?php echo addslashes(__('Gmail test completed')); ?>', 'success');
                 refreshGmailStatus();
             }
         });
@@ -311,6 +331,7 @@ $(function() {
             method: 'POST',
             cache: false,
             success: function() {
+                showGmailMessage('<?php echo addslashes(__('Gmail disconnected and tokens cleared.')); ?>', 'warning');
                 refreshGmailStatus();
             }
         });
