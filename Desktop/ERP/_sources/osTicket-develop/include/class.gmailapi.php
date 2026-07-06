@@ -215,7 +215,9 @@ class GmailApi {
         $account['redirect_uri'] = trim((string) ($vars['redirect_uri'] ?? ($vars['gmail_redirect_uri'] ?? $account['redirect_uri'] ?? self::defaultRedirectUri())));
         $account['processed_label'] = trim((string) ($vars['processed_label'] ?? ($vars['gmail_processed_label'] ?? $account['processed_label'] ?? 'osTicket/Processed')));
         $account['poll_query'] = trim((string) ($vars['poll_query'] ?? ($vars['gmail_poll_query'] ?? $account['poll_query'] ?? 'is:unread')));
-        $account['active'] = !empty($vars['active']) || !empty($vars['gmail_active']) ? 1 : (int) ($account['active'] ?? 0);
+        if (array_key_exists('active', $vars) || array_key_exists('gmail_active', $vars)) {
+            $account['active'] = (!empty($vars['active']) || !empty($vars['gmail_active'])) ? 1 : 0;
+        }
         $account['last_error'] = null;
         return self::saveAccount($account, $account['id'] ?? null);
     }
