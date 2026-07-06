@@ -175,13 +175,21 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
                 <i class="help-tip icon-question-sign" href="#ticket_response_files"></i>
             </td>
         </tr>
-        <tr><th colspan=2><em><strong><?php echo __('Gmail API Integration'); ?></strong>: <?php echo __('Connect Gmail to poll messages and send replies.'); ?></em></th></tr>
+        <tr><th colspan=2>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                <em><strong><?php echo __('Gmail API Integration'); ?></strong>: <?php echo __('Connect Gmail to poll messages and send replies.'); ?></em>
+                <span id="gmail-badge" style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-weight:700;font-size:12px;line-height:1;background:<?php echo !empty($gmail['refresh_token']) ? '#0f766e' : '#7c2d12'; ?>;color:#fff;">
+                    <span style="width:8px;height:8px;border-radius:999px;background:#fff;display:inline-block;"></span>
+                    <span id="gmail-badge-text"><?php echo !empty($gmail['refresh_token']) ? __('Connected') : __('Not connected'); ?></span>
+                </span>
+            </div>
+        </th></tr>
         <tr>
             <td width="180"><?php echo __('Integration'); ?>:</td>
             <td>
                 <label><input type="checkbox" name="gmail_active" value="1" <?php echo !empty($gmail['active']) ? 'checked="checked"' : ''; ?>>
                 <?php echo __('Enable Gmail API'); ?></label>
-                <span class="faded"><?php echo !empty($gmail['refresh_token']) ? __('Connected') : __('Not connected'); ?></span>
+                <div class="faded"><?php echo __('When enabled, osTicket can poll Gmail and send replies through the same mailbox.'); ?></div>
             </td>
         </tr>
         <tr>
@@ -215,12 +223,13 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
             </td>
         </tr>
         <tr>
-            <td width="180"><?php echo __('Gmail Status'); ?>:</td>
+            <td width="180"><?php echo __('Status'); ?>:</td>
             <td>
-                <div><?php echo !empty($gmail['last_sync_at']) ? sprintf('%s %s', __('Last sync:'), Format::datetime($gmail['last_sync_at'])) : __('No sync yet'); ?></div>
-                <?php if (!empty($gmail['last_error'])) { ?>
-                    <div class="error"><?php echo Format::htmlchars($gmail['last_error']); ?></div>
-                <?php } ?>
+                <div style="display:grid;gap:6px;">
+                    <div><strong><?php echo __('Last sync'); ?>:</strong> <span id="gmail-last-sync"><?php echo !empty($gmail['last_sync_at']) ? Format::datetime($gmail['last_sync_at']) : __('No sync yet'); ?></span></div>
+                    <div><strong><?php echo __('Connected account'); ?>:</strong> <span id="gmail-account"><?php echo Format::htmlchars($gmail['gmail_email'] ?? __('Not connected')); ?></span></div>
+                    <div id="gmail-last-error" class="error" style="<?php echo empty($gmail['last_error']) ? 'display:none;' : ''; ?>"><?php echo Format::htmlchars($gmail['last_error'] ?? ''); ?></div>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -236,6 +245,20 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
 <script type="text/javascript">
 $(function() {
     var rootPath = '<?php echo rtrim(ROOT_PATH, "/"); ?>/';
+    function renderGmailStatus(status) {
+        if (!status)
+            return;
+        $('#gmail-badge').css('background', status.connected ? '#0f766e' : '#7c2d12');
+        $('#gmail-badge-text').text(status.connected ? '<?php echo addslashes(__('Connected')); ?>' : '<?php echo addslashes(__('Not connected')); ?>');
+        $('#gmail-last-sync').text(status.last_sync_at ? status.last_sync_at : '<?php echo addslashes(__('No sync yet')); ?>');
+        $('#gmail-account').text(status.gmail_email || '<?php echo addslashes(__('Not connected')); ?>');
+        if (status.last_error) {
+            $('#gmail-last-error').text(status.last_error).show();
+        } else {
+            $('#gmail-last-error').text('').hide();
+        }
+        $('input[name="gmail_active"]').prop('checked', !!status.active);
+    }
     function refreshGmailStatus() {
         $.ajax({
             url: rootPath + 'api/gmail/status.php',
@@ -243,7 +266,7 @@ $(function() {
             cache: false,
             success: function(json) {
                 if (json && json.status)
-                    window.location.reload();
+                    renderGmailStatus(json.status);
             }
         });
     }
@@ -274,8 +297,8 @@ $(function() {
             cache: false,
             success: function(json) {
                 alert((json && json.summary)
-                    ? 'Processed: ' + json.summary.processed + ', skipped: ' + json.summary.skipped + ', errors: ' + json.summary.errors
-                    : 'Gmail test completed');
+                    ? '<?php echo addslashes(__('Processed')); ?>: ' + json.summary.processed + ', <?php echo addslashes(__('Skipped')); ?>: ' + json.summary.skipped + ', <?php echo addslashes(__('Errors')); ?>: ' + json.summary.errors
+                    : '<?php echo addslashes(__('Gmail test completed')); ?>');
                 refreshGmailStatus();
             }
         });
@@ -292,5 +315,6 @@ $(function() {
             }
         });
     });
+    refreshGmailStatus();
 });
 </script>
