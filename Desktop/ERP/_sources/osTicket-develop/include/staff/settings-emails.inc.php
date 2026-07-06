@@ -228,21 +228,35 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
 <p style="text-align:center;">
     <input class="button" type="submit" name="submit" value="<?php echo __('Save Changes');?>">
     <input class="button" type="button" id="gmail-connect" value="<?php echo __('Save and Connect Gmail');?>">
+    <input class="button" type="button" id="gmail-test" value="<?php echo __('Test Poll');?>">
+    <input class="button" type="button" id="gmail-disconnect" value="<?php echo __('Disconnect Gmail');?>">
     <input class="button" type="reset" name="reset" value="<?php echo __('Reset Changes');?>">
 </p>
 </form>
 <script type="text/javascript">
 $(function() {
+    var rootPath = '<?php echo rtrim(ROOT_PATH, "/"); ?>/';
+    function refreshGmailStatus() {
+        $.ajax({
+            url: rootPath + 'api/gmail/status.php',
+            method: 'GET',
+            cache: false,
+            success: function(json) {
+                if (json && json.status)
+                    window.location.reload();
+            }
+        });
+    }
     $('#gmail-connect').on('click', function() {
         var $form = $(this).closest('form');
         $.ajax({
-            url: 'api/gmail/setup.php',
+            url: rootPath + 'api/gmail/setup.php',
             method: 'POST',
             data: $.objectifyForm($form.serializeArray()),
             cache: false,
             success: function() {
                 $.ajax({
-                    url: 'api/gmail/connect.php',
+                    url: rootPath + 'api/gmail/connect.php',
                     method: 'GET',
                     cache: false,
                     success: function(json) {
@@ -250,6 +264,31 @@ $(function() {
                             window.location.href = json.authorization_url;
                     }
                 });
+            }
+        });
+    });
+    $('#gmail-test').on('click', function() {
+        $.ajax({
+            url: rootPath + 'api/gmail/test.php',
+            method: 'GET',
+            cache: false,
+            success: function(json) {
+                alert((json && json.summary)
+                    ? 'Processed: ' + json.summary.processed + ', skipped: ' + json.summary.skipped + ', errors: ' + json.summary.errors
+                    : 'Gmail test completed');
+                refreshGmailStatus();
+            }
+        });
+    });
+    $('#gmail-disconnect').on('click', function() {
+        if (!confirm('<?php echo addslashes(__('Disconnect Gmail and clear saved tokens?')); ?>'))
+            return;
+        $.ajax({
+            url: rootPath + 'api/gmail/disconnect.php',
+            method: 'POST',
+            cache: false,
+            success: function() {
+                refreshGmailStatus();
             }
         });
     });

@@ -384,6 +384,56 @@ class GmailApi {
         return $account && !empty($account['refresh_token']);
     }
 
+    static function summary() {
+        $account = self::loadAccount() ?: self::defaults();
+        return [
+            'id' => $account['id'] ?? null,
+            'active' => (int) ($account['active'] ?? 0),
+            'connected' => !empty($account['refresh_token']),
+            'gmail_email' => $account['gmail_email'] ?? '',
+            'processed_label' => $account['processed_label'] ?? 'osTicket/Processed',
+            'poll_query' => $account['poll_query'] ?? 'is:unread',
+            'last_sync_at' => $account['last_sync_at'] ?? null,
+            'last_error' => $account['last_error'] ?? null,
+            'redirect_uri' => $account['redirect_uri'] ?? self::defaultRedirectUri(),
+        ];
+    }
+
+    static function revokeTokenValue($token) {
+        $token = trim((string) $token);
+        if ($token === '')
+            return true;
+
+        try {
+            self::curlJson('https://oauth2.googleapis.com/revoke', [
+                'token' => $token,
+            ]);
+        } catch (Throwable $t) {
+            return false;
+        }
+        return true;
+    }
+
+    static function disconnect() {
+        $account = self::loadAccount();
+        if (!$account)
+            return self::summary();
+
+        self::revokeTokenValue($account['refresh_token'] ?? '');
+        self::revokeTokenValue($account['access_token'] ?? '');
+        $account['access_token'] = '';
+        $account['refresh_token'] = '';
+        $account['token_expires_at'] = 0;
+        $account['active'] = 0;
+        $account['last_error'] = null;
+        self::saveAccount($account, $account['id']);
+        return self::summary();
+    }
+
+    static function testPoll($limit=5) {
+        return self::run($limit);
+    }
+
     static function ensureLabel(array &$account) {
         $labelName = trim((string) ($account['processed_label'] ?? ''));
         if ($labelName === '')
