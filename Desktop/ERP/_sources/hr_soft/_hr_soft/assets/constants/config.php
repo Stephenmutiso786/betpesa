@@ -21,6 +21,11 @@ $osticket_api_key = "";
 $osticket_help_topic_id = 1;
 $osticket_source = "Web";
 
+// Outbound email defaults for the HR app.
+$mail_from_name = "HR Support";
+$mail_from_email = "";
+$mail_reply_to = "";
+
 /*
 date_default_timezone_set('Asia/Kolkata');
 

@@ -290,6 +290,9 @@
                            <a class="nav-link" href="manage_email.php">Email Management</a>
                         </li>
                         <li class="nav-item">
+                           <a class="nav-link" href="send_email.php">Send Email</a>
+                        </li>
+                        <li class="nav-item">
                            <a class="nav-link" href="seo_setting.php">SEO Setting</a>
                         </li>
                      </ul>

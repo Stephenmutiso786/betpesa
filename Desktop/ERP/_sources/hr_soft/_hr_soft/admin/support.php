@@ -146,6 +146,7 @@ try {
                         <h4 class="card-title">Support Desk</h4>
                         <p class="text-muted mb-4">Public requests become real tickets and can notify HR and admins by email.</p>
                         <button class="btn btn-primary btn-block mb-2" type="button" data-toggle="modal" data-target="#supportFormModal">Open Public Contact Form</button>
+                        <a class="btn btn-info btn-block mb-2" href="send_email.php">Send Email to User</a>
                         <a class="btn btn-outline-secondary btn-block" href="../index.php">View Public Site</a>
                     </div>
                 </div>
