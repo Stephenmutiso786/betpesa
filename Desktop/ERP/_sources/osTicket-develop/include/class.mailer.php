@@ -160,6 +160,21 @@ class Mailer {
         if ($isHtml) {
             $icons = $cfg->getSocialIcons();
             $buttons = array();
+            $logoHtml = '';
+
+            $logoFile = ROOT_DIR . 'assets/default/images/logo.png';
+            if (is_readable($logoFile)) {
+                $logo = new \FileObject($logoFile);
+                $logo->setFilename(basename($logoFile));
+                $logo->setMimeType('image/png');
+                $this->addFileObject($logo);
+                $logoCid = $logo->getKey();
+                $logoHtml = sprintf(
+                    '<div style="margin-bottom:12px;"><img src="cid:%1$s" alt="%2$s" style="display:block;margin:0 auto;max-width:120px;height:auto;border:0;outline:none;text-decoration:none;" /></div>',
+                    $logoCid,
+                    \Format::htmlchars((string) $cfg->getTitle())
+                );
+            }
 
             foreach ($links as $name => $url) {
                 if (!isset($icons[$name]))
@@ -176,8 +191,13 @@ class Mailer {
                 $cid = $file->getKey();
 
                 $buttons[] = sprintf(
-                    '<a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" title="%2$s" style="display:inline-block;margin:0 5px;width:34px;height:34px;line-height:34px;text-align:center;border-radius:999px;border:1px solid #8c8c8c;background:#2a2a2a;text-decoration:none;vertical-align:middle;">'
+                    '<a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" title="%2$s" style="display:inline-block;margin:0 5px;text-decoration:none;vertical-align:middle;">'
+                    .'<span style="display:block;text-align:center;">'
+                    .'<span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:999px;border:1px solid #8c8c8c;background:#2a2a2a;">'
                     .'<img src="cid:%3$s" alt="%2$s" width="16" height="16" style="display:block;margin:9px auto 0;border:0;outline:none;text-decoration:none;" />'
+                    .'</span>'
+                    .'<span style="display:block;margin-top:6px;font-family:Arial,sans-serif;font-size:11px;line-height:1.2;color:#b9b9b9;">%2$s</span>'
+                    .'</span>'
                     .'</a>',
                     \Format::htmlchars($url),
                     \Format::htmlchars($meta['label']),
@@ -186,9 +206,20 @@ class Mailer {
             }
 
             if (!$buttons)
-                return $body;
+                return rtrim($body) . "\n" . '<div style="margin-top:24px;padding-top:18px;border-top:1px solid #3a3a3a;text-align:center;font-family:Arial,sans-serif;font-size:12px;line-height:1.5;color:#b9b9b9;">'
+                    .__('Follow us on:')
+                    .'<div style="margin-top:8px;">'
+                    .implode(' ', array_map(function($name) use ($links) {
+                        return sprintf(
+                            '<a href="%1$s" target="_blank" rel="noopener noreferrer" style="color:#7f7f7f;text-decoration:underline;margin:0 6px;">%2$s</a>',
+                            \Format::htmlchars($links[$name]),
+                            \Format::htmlchars(ucfirst($name))
+                        );
+                    }, array_keys($links)))
+                    .'</div></div>';
 
             $footer = '<div style="margin-top:24px;padding-top:18px;border-top:1px solid #3a3a3a;text-align:center;">'
+                .$logoHtml
                 .'<div style="margin-bottom:10px;color:#b9b9b9;font-family:Arial,sans-serif;font-size:12px;line-height:1.4;letter-spacing:.2px;">'
                 .__('Follow us on:').'</div>'
                 .'<div style="text-align:center;line-height:1;">'
@@ -588,7 +619,7 @@ class Mailer {
             $isHtml = false;
         }
 
-        if ($isHtml && $cfg && $cfg->isRichTextEnabled()) {
+        if ($isHtml) {
             // Pick a domain compatible with pear Mail_Mime
             $matches = array();
             if (preg_match('#(@[0-9a-zA-Z\-\.]+)#', (string) $this->getFromAddress(), $matches)) {

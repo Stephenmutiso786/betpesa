@@ -483,19 +483,27 @@ class OsticketConfig extends Config {
         return array(
             'facebook' => array(
                 'label' => 'Facebook',
-                'file' => ROOT_DIR.'assets/default/images/social/facebook.svg',
+                'file' => file_exists(ROOT_DIR.'assets/default/images/social/facebook.png')
+                    ? ROOT_DIR.'assets/default/images/social/facebook.png'
+                    : ROOT_DIR.'assets/default/images/social/facebook.svg',
             ),
             'x' => array(
                 'label' => 'X',
-                'file' => ROOT_DIR.'assets/default/images/social/x.svg',
+                'file' => file_exists(ROOT_DIR.'assets/default/images/social/x.png')
+                    ? ROOT_DIR.'assets/default/images/social/x.png'
+                    : ROOT_DIR.'assets/default/images/social/x.svg',
             ),
             'instagram' => array(
                 'label' => 'Instagram',
-                'file' => ROOT_DIR.'assets/default/images/social/instagram.svg',
+                'file' => file_exists(ROOT_DIR.'assets/default/images/social/instagram.png')
+                    ? ROOT_DIR.'assets/default/images/social/instagram.png'
+                    : ROOT_DIR.'assets/default/images/social/instagram.svg',
             ),
             'linkedin' => array(
                 'label' => 'LinkedIn',
-                'file' => ROOT_DIR.'assets/default/images/social/linkedin.svg',
+                'file' => file_exists(ROOT_DIR.'assets/default/images/social/linkedin.png')
+                    ? ROOT_DIR.'assets/default/images/social/linkedin.png'
+                    : ROOT_DIR.'assets/default/images/social/linkedin.svg',
             ),
         );
     }
