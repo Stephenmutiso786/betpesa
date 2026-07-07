@@ -614,9 +614,20 @@ class Mailer {
             $message->setTextBody($txtbody);
         }
         else {
-            $body = $this->appendSocialFooter($body, false);
+            $plainBody = $body;
+            $body = $this->appendSocialFooter($plainBody, false);
             $message->setTextBody($body);
             $isHtml = false;
+
+            if ($cfg && $cfg->getSocialLinks()) {
+                $htmlBody = sprintf(
+                    '<div style="white-space:pre-wrap;font-family:Arial,sans-serif;line-height:1.5;color:#222;">%s</div>',
+                    \Format::htmlchars($plainBody)
+                );
+                $htmlBody = $this->appendSocialFooter($htmlBody, true);
+                $body = $htmlBody;
+                $isHtml = true;
+            }
         }
 
         if ($isHtml) {
