@@ -3,6 +3,51 @@ session_start();
 require_once('assets/constants/config.php');
 require_once('assets/constants/fetch-my-info.php');
 
+function ensureSupportRequestLog(PDO $conn) {
+    $conn->exec(
+        "CREATE TABLE IF NOT EXISTS support_requests (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(191) NOT NULL,
+            email VARCHAR(191) NOT NULL,
+            subject VARCHAR(255) NOT NULL,
+            message TEXT NOT NULL,
+            status VARCHAR(32) NOT NULL DEFAULT 'submitted',
+            ticket_number VARCHAR(64) DEFAULT NULL,
+            response_code INT DEFAULT NULL,
+            response_body TEXT DEFAULT NULL,
+            error_message TEXT DEFAULT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            INDEX idx_created_at (created_at),
+            INDEX idx_status (status),
+            INDEX idx_ticket_number (ticket_number)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
+    );
+}
+
+function logSupportRequest(PDO $conn, array $payload) {
+    ensureSupportRequestLog($conn);
+
+    $stmt = $conn->prepare(
+        "INSERT INTO support_requests
+            (name, email, subject, message, status, ticket_number, response_code, response_body, error_message)
+         VALUES
+            (:name, :email, :subject, :message, :status, :ticket_number, :response_code, :response_body, :error_message)"
+    );
+
+    $stmt->execute(array(
+        ':name' => $payload['name'],
+        ':email' => $payload['email'],
+        ':subject' => $payload['subject'],
+        ':message' => $payload['message'],
+        ':status' => $payload['status'],
+        ':ticket_number' => $payload['ticket_number'],
+        ':response_code' => $payload['response_code'],
+        ':response_body' => $payload['response_body'],
+        ':error_message' => $payload['error_message'],
+    ));
+}
+
 function submitSupportTicket(array $payload, $apiUrl, $apiKey, &$error = null) {
     $json = json_encode($payload);
     if ($json === false) {
@@ -102,6 +147,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errors) {
+        $logPayload = array(
+            'name' => $values['name'],
+            'email' => $values['email'],
+            'subject' => $values['subject'],
+            'message' => $values['message'],
+            'status' => 'submitted',
+            'ticket_number' => null,
+            'response_code' => null,
+            'response_body' => null,
+            'error_message' => null,
+        );
+
         $payload = array(
             'name' => $values['name'],
             'email' => $values['email'],
@@ -117,15 +174,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = submitSupportTicket($payload, $osticket_api_url, $osticket_api_key, $responseError);
         if ($result) {
             list($httpStatus, $responseBody) = $result;
+            $logPayload['response_code'] = (int) $httpStatus;
+            $logPayload['response_body'] = $responseBody;
             if ((int) $httpStatus === 201 && $responseBody !== '') {
                 $ticketNumber = $responseBody;
+                $logPayload['status'] = 'created';
+                $logPayload['ticket_number'] = $ticketNumber;
                 $notice = 'Thanks. Your support ticket has been created as #' . htmlspecialchars($ticketNumber, ENT_QUOTES, 'UTF-8') . '.';
                 $values = array_fill_keys(array_keys($values), '');
             } else {
+                $logPayload['status'] = 'rejected';
+                $logPayload['error_message'] = 'The support desk did not accept the request.';
                 $errors['err'] = 'The support desk did not accept the request.';
             }
         } else {
+            $logPayload['status'] = 'failed';
+            $logPayload['error_message'] = $responseError ?: 'Unable to send your request right now.';
             $errors['err'] = $responseError ?: 'Unable to send your request right now.';
+        }
+
+        try {
+            logSupportRequest($conn, $logPayload);
+        } catch (Exception $e) {
+            // Keep the user flow intact even if local logging fails.
         }
     }
 }
