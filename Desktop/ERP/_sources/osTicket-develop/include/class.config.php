@@ -480,27 +480,32 @@ class OsticketConfig extends Config {
     }
 
     function getSocialIcons() {
+        $base = rtrim($this->getBaseUrl(), '/');
         return array(
             'facebook' => array(
                 'label' => 'Facebook',
+                'src' => $base.'/assets/default/images/social/facebook.png',
                 'file' => file_exists(ROOT_DIR.'assets/default/images/social/facebook.png')
                     ? ROOT_DIR.'assets/default/images/social/facebook.png'
                     : ROOT_DIR.'assets/default/images/social/facebook.svg',
             ),
             'x' => array(
                 'label' => 'X',
+                'src' => $base.'/assets/default/images/social/x.png',
                 'file' => file_exists(ROOT_DIR.'assets/default/images/social/x.png')
                     ? ROOT_DIR.'assets/default/images/social/x.png'
                     : ROOT_DIR.'assets/default/images/social/x.svg',
             ),
             'instagram' => array(
                 'label' => 'Instagram',
+                'src' => $base.'/assets/default/images/social/instagram.png',
                 'file' => file_exists(ROOT_DIR.'assets/default/images/social/instagram.png')
                     ? ROOT_DIR.'assets/default/images/social/instagram.png'
                     : ROOT_DIR.'assets/default/images/social/instagram.svg',
             ),
             'linkedin' => array(
                 'label' => 'LinkedIn',
+                'src' => $base.'/assets/default/images/social/linkedin.png',
                 'file' => file_exists(ROOT_DIR.'assets/default/images/social/linkedin.png')
                     ? ROOT_DIR.'assets/default/images/social/linkedin.png'
                     : ROOT_DIR.'assets/default/images/social/linkedin.svg',

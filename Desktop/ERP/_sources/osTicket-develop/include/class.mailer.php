@@ -161,17 +161,11 @@ class Mailer {
             $icons = $cfg->getSocialIcons();
             $buttons = array();
             $logoHtml = '';
-
-            $logoFile = ROOT_DIR . 'assets/default/images/logo.png';
-            if (is_readable($logoFile)) {
-                $logo = new \FileObject($logoFile);
-                $logo->setFilename(basename($logoFile));
-                $logo->setMimeType('image/png');
-                $this->addFileObject($logo);
-                $logoCid = $logo->getKey();
+            $logoUrl = rtrim($cfg->getBaseUrl(), '/') . '/assets/default/images/logo.png';
+            if (is_readable(ROOT_DIR . 'assets/default/images/logo.png')) {
                 $logoHtml = sprintf(
-                    '<div style="margin-bottom:12px;"><img src="cid:%1$s" alt="%2$s" style="display:block;margin:0 auto;max-width:120px;height:auto;border:0;outline:none;text-decoration:none;" /></div>',
-                    $logoCid,
+                    '<div style="margin-bottom:12px;"><img src="%1$s" alt="%2$s" style="display:block;margin:0 auto;max-width:120px;height:auto;border:0;outline:none;text-decoration:none;" /></div>',
+                    \Format::htmlchars($logoUrl),
                     \Format::htmlchars((string) $cfg->getTitle())
                 );
             }
@@ -184,24 +178,20 @@ class Mailer {
                 if (empty($meta['file']) || !is_readable($meta['file']))
                     continue;
 
-                $file = new \FileObject($meta['file']);
-                $file->setFilename(basename($meta['file']));
-                $file->setMimeType('image/svg+xml');
-                $this->addFileObject($file);
-                $cid = $file->getKey();
+                $src = $meta['src'] ?? '';
 
                 $buttons[] = sprintf(
                     '<a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" title="%2$s" style="display:inline-block;margin:0 5px;text-decoration:none;vertical-align:middle;">'
                     .'<span style="display:block;text-align:center;">'
                     .'<span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:999px;border:1px solid #8c8c8c;background:#2a2a2a;">'
-                    .'<img src="cid:%3$s" alt="%2$s" width="16" height="16" style="display:block;margin:9px auto 0;border:0;outline:none;text-decoration:none;" />'
+                    .'<img src="%3$s" alt="%2$s" width="16" height="16" style="display:block;margin:9px auto 0;border:0;outline:none;text-decoration:none;" />'
                     .'</span>'
                     .'<span style="display:block;margin-top:6px;font-family:Arial,sans-serif;font-size:11px;line-height:1.2;color:#b9b9b9;">%2$s</span>'
                     .'</span>'
                     .'</a>',
                     \Format::htmlchars($url),
                     \Format::htmlchars($meta['label']),
-                    $cid
+                    \Format::htmlchars($src)
                 );
             }
 
@@ -631,15 +621,14 @@ class Mailer {
         }
 
         if ($isHtml) {
-            // Pick a domain compatible with pear Mail_Mime
+            // Preserve support for existing template images which reference
+            // inline CIDs such as the built-in osTicket logo.
             $matches = array();
             if (preg_match('#(@[0-9a-zA-Z\-\.]+)#', (string) $this->getFromAddress(), $matches)) {
                 $domain = $matches[1];
             } else {
                 $domain = '@localhost';
             }
-            // Format content-ids with the domain, and add the inline images
-            // to the email attachment list
             $self = $this;
             $body = preg_replace_callback('/cid:([\w.-]{32})/',
                 function($match) use ($domain, $message, $self) {
@@ -648,16 +637,16 @@ class Mailer {
 
                     try {
                         $message->addInlineImage($match[1].$domain, $file);
-                        // Don't re-attach the image below
                         unset($self->attachments[$file->getUId()]);
                         return $match[0].$domain;
-                    }  catch(\Exception $ex) {
-                         $self->logWarning(sprintf("%1\$s:%2\$s\n\n%3\$s\n",
-                                     _S("Unable to retrieve email inline image"),
-                                     $match[1].$domain,
-                                     $ex->getMessage()));
+                    } catch(\Exception $ex) {
+                        $self->logWarning(sprintf("%1\$s:%2\$s\n\n%3\$s\n",
+                            _S("Unable to retrieve email inline image"),
+                            $match[1].$domain,
+                            $ex->getMessage()));
                     }
                 }, $body);
+
             // Add an HTML body
             $message->setHtmlBody($body);
         }
