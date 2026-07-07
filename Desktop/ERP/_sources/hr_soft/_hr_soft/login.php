@@ -75,8 +75,11 @@ require_once('assets/constants/fetch-my-info.php');
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                     <br>
-
-                                         <a href="index.php" class="footer-link">Admin Login</a>
+                    <div class="text-center">
+                        <a href="contact.php" class="footer-link">Contact Support</a>
+                        <span class="mx-2">|</span>
+                        <a href="index.php" class="footer-link">Admin Login</a>
+                    </div>
 
                 </form>
             </div>

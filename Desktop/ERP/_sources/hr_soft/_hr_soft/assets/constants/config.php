@@ -13,6 +13,14 @@ $dbname = "hr_soft1";
 
 $currency = "INR";
 
+// osTicket support desk integration.
+// Set these values to your live osTicket instance so public contact requests
+// are created as real tickets.
+$osticket_api_url = "";
+$osticket_api_key = "";
+$osticket_help_topic_id = 1;
+$osticket_source = "Web";
+
 /*
 date_default_timezone_set('Asia/Kolkata');
 

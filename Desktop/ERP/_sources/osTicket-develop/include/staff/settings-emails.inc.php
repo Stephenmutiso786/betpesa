@@ -238,6 +238,39 @@ if(!defined('OSTADMININC') || !$thisstaff || !$thisstaff->isAdmin() || !$config)
                 <div id="gmail-inline-message" class="alert alert-info mb-0 py-2 px-3" style="display:none;"></div>
             </td>
         </tr>
+        <tr><th colspan=2><em><strong><?php echo __('Social Footer Links'); ?></strong>: <?php echo __('These links are appended to outgoing email footers and stay in sync with system settings.'); ?></em></th></tr>
+        <tr>
+            <td width="180"><?php echo __('Facebook URL'); ?>:</td>
+            <td>
+                <input type="text" size="80" name="facebook_url" value="<?php echo Format::htmlchars($config['facebook_url'] ?? ''); ?>" placeholder="https://facebook.com/your-page">
+                <div class="faded"><?php echo __('Shown as a clickable Facebook icon in outgoing email footers.'); ?></div>
+                <font class="error">&nbsp;<?php echo $errors['facebook_url']; ?></font>
+            </td>
+        </tr>
+        <tr>
+            <td width="180"><?php echo __('X / Twitter URL'); ?>:</td>
+            <td>
+                <input type="text" size="80" name="x_url" value="<?php echo Format::htmlchars($config['x_url'] ?? ''); ?>" placeholder="https://x.com/your-handle">
+                <div class="faded"><?php echo __('Shown as a clickable X icon in outgoing email footers.'); ?></div>
+                <font class="error">&nbsp;<?php echo $errors['x_url']; ?></font>
+            </td>
+        </tr>
+        <tr>
+            <td width="180"><?php echo __('Instagram URL'); ?>:</td>
+            <td>
+                <input type="text" size="80" name="instagram_url" value="<?php echo Format::htmlchars($config['instagram_url'] ?? ''); ?>" placeholder="https://instagram.com/your-handle">
+                <div class="faded"><?php echo __('Shown as a clickable Instagram icon in outgoing email footers.'); ?></div>
+                <font class="error">&nbsp;<?php echo $errors['instagram_url']; ?></font>
+            </td>
+        </tr>
+        <tr>
+            <td width="180"><?php echo __('LinkedIn URL'); ?>:</td>
+            <td>
+                <input type="text" size="80" name="linkedin_url" value="<?php echo Format::htmlchars($config['linkedin_url'] ?? ''); ?>" placeholder="https://linkedin.com/company/your-page">
+                <div class="faded"><?php echo __('Shown as a clickable LinkedIn icon in outgoing email footers.'); ?></div>
+                <font class="error">&nbsp;<?php echo $errors['linkedin_url']; ?></font>
+            </td>
+        </tr>
     </tbody>
 </table>
 <p style="text-align:center;">

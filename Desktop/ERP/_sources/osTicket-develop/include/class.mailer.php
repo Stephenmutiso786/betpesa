@@ -17,6 +17,8 @@
 **********************************************************************/
 namespace osTicket\Mail;
 
+require_once INCLUDE_DIR . 'class.file.php';
+
 class Mailer {
     private $from = null;
     var $email = null;
@@ -143,6 +145,64 @@ class Mailer {
                 return $F;
         }
         return \AttachmentFile::lookup($key);
+    }
+
+    private function appendSocialFooter($body, $isHtml=true) {
+        global $cfg;
+
+        if (!$cfg)
+            return $body;
+
+        $links = $cfg->getSocialLinks();
+        if (!$links)
+            return $body;
+
+        if ($isHtml) {
+            $icons = $cfg->getSocialIcons();
+            $buttons = array();
+
+            foreach ($links as $name => $url) {
+                if (!isset($icons[$name]))
+                    continue;
+
+                $meta = $icons[$name];
+                if (empty($meta['file']) || !is_readable($meta['file']))
+                    continue;
+
+                $file = new \FileObject($meta['file']);
+                $file->setFilename(basename($meta['file']));
+                $file->setMimeType('image/svg+xml');
+                $this->addFileObject($file);
+                $cid = $file->getKey();
+
+                $buttons[] = sprintf(
+                    '<a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s" title="%2$s" style="display:inline-block;margin:0 5px;width:34px;height:34px;line-height:34px;text-align:center;border-radius:999px;border:1px solid #8c8c8c;background:#2a2a2a;text-decoration:none;vertical-align:middle;">'
+                    .'<img src="cid:%3$s" alt="%2$s" width="16" height="16" style="display:block;margin:9px auto 0;border:0;outline:none;text-decoration:none;" />'
+                    .'</a>',
+                    \Format::htmlchars($url),
+                    \Format::htmlchars($meta['label']),
+                    $cid
+                );
+            }
+
+            if (!$buttons)
+                return $body;
+
+            $footer = '<div style="margin-top:24px;padding-top:18px;border-top:1px solid #3a3a3a;text-align:center;">'
+                .'<div style="margin-bottom:10px;color:#b9b9b9;font-family:Arial,sans-serif;font-size:12px;line-height:1.4;letter-spacing:.2px;">'
+                .__('Follow us on:').'</div>'
+                .'<div style="text-align:center;line-height:1;">'
+                .implode('', $buttons)
+                .'</div>'
+                .'</div>';
+
+            return rtrim($body) . "\n" . $footer;
+        }
+
+        if (!($footer = $cfg->getSocialFooterText()))
+            return $body;
+
+        return rtrim($body) . "\n\n" . $footer . "\n";
     }
 
     /**
@@ -516,11 +576,14 @@ class Mailer {
                         $body);
             }
 
+            $body = $this->appendSocialFooter($body, true);
+
             $txtbody = rtrim(\Format::html2text($body, 90, false))
                 . ($messageId ? "\nRef-Mid: $messageId\n" : '');
             $message->setTextBody($txtbody);
         }
         else {
+            $body = $this->appendSocialFooter($body, false);
             $message->setTextBody($body);
             $isHtml = false;
         }

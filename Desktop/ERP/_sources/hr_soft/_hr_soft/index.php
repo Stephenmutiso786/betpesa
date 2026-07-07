@@ -73,8 +73,9 @@ extract($row); ?>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button> <br>
-
-                    <!-- <a href="login.php" class="footer-link">Voter Login</a>-->
+                    <div class="text-center">
+                        <a href="contact.php" class="footer-link">Contact Support</a>
+                    </div>
                 </form>
             </div>
             <!-- <div class="card-footer bg-white p-0  ">
