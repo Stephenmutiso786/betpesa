@@ -93,7 +93,7 @@
                </li>
 
                <li class="nav-item ">
-                  <a class="nav-link " href="../contact.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
+                  <a class="nav-link " href="support.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
                </li>
              
                 <li class="nav-item">
@@ -235,7 +235,7 @@
                 <?php } }?>
 
                <li class="nav-item ">
-                  <a class="nav-link " href="../contact.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
+                  <a class="nav-link " href="support.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
                </li>
                 
               <?php if (isset($userroles)) {
