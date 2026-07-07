@@ -91,6 +91,10 @@
                   <a class="nav-link " href="view_salary.php"><i class="fa fa-credit-card
                      "></i>Salary  Management<span class="badge badge-success">6</span></a>
                </li>
+
+               <li class="nav-item ">
+                  <a class="nav-link " href="../contact.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
+               </li>
              
                 <li class="nav-item">
                   <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-file-alt
@@ -221,7 +225,7 @@
                      "></i>Leaves  Management<span class="badge badge-success">6</span></a>
                </li>
                 <?php } }?>
-                <?php if (isset($userroles)) {
+               <?php if (isset($userroles)) {
                            if (in_array('Salary', $userroles) || in_array('Salary', $userroles)) { ?>
               
                <li class="nav-item ">
@@ -229,6 +233,10 @@
                      "></i>Salary  Management<span class="badge badge-success">6</span></a>
                </li>
                 <?php } }?>
+
+               <li class="nav-item ">
+                  <a class="nav-link " href="../contact.php"><i class="fas fa-life-ring"></i>Support<span class="badge badge-success">new</span></a>
+               </li>
                 
               <?php if (isset($userroles)) {
                            if (in_array('Reports', $userroles) || in_array('Reports', $userroles)) { ?>
